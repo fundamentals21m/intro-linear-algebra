@@ -6,6 +6,8 @@ import { FEATURES, COURSE_ID } from '@/config';
 import { useGamification } from '@/contexts/GamificationContext';
 import { Header } from './Header';
 import { Sidebar } from './Sidebar';
+import { SectionQuiz } from '@/components/quiz/SectionQuiz';
+import { getSectionQuiz } from '@/data/quizzes';
 import type { SectionId } from '@/types/gamification';
 
 interface LessonLayoutProps {
@@ -22,6 +24,7 @@ export function LessonLayout({ sectionId, children }: LessonLayoutProps) {
   const sectionIndex = getSectionIndex(sectionId);
 
   const gamification = FEATURES.gamification ? useGamification() : null;
+  const quizQuestions = getSectionQuiz(sectionId);
 
   // Track section visit
   useEffect(() => {
@@ -93,6 +96,15 @@ export function LessonLayout({ sectionId, children }: LessonLayoutProps) {
           <article className="prose prose-invert prose-lg max-w-none">
             {children}
           </article>
+
+          {/* Section Quiz */}
+          {quizQuestions && quizQuestions.length > 0 && (
+            <SectionQuiz
+              sectionId={sectionId}
+              questions={quizQuestions}
+              title="Test Your Understanding"
+            />
+          )}
 
           {/* Navigation */}
           <nav className="mt-16 flex items-center justify-between gap-4 pt-8 border-t border-dark-800">

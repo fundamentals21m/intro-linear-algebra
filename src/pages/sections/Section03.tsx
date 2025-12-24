@@ -144,7 +144,22 @@ export default function Section03() {
         </p>
       </Example>
 
-      <Theorem title="Existence and Uniqueness" className="my-6">
+      <Theorem
+        title="Existence and Uniqueness"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Existence:</strong> Given any <Math>{`\\mathbf{b}`}</Math>, set <Math>{`\\mathbf{x} = A^{-1}\\mathbf{b}`}</Math>. Then:</p>
+            <MathBlock>{`A\\mathbf{x} = A(A^{-1}\\mathbf{b}) = (AA^{-1})\\mathbf{b} = I\\mathbf{b} = \\mathbf{b}`}</MathBlock>
+            <p>So <Math>{`\\mathbf{x} = A^{-1}\\mathbf{b}`}</Math> is indeed a solution.</p>
+            <p className="mt-3"><strong>Uniqueness:</strong> Suppose <Math>{`\\mathbf{x}_1`}</Math> and <Math>{`\\mathbf{x}_2`}</Math> are both solutions:</p>
+            <MathBlock>{`A\\mathbf{x}_1 = \\mathbf{b} \\quad \\text{and} \\quad A\\mathbf{x}_2 = \\mathbf{b}`}</MathBlock>
+            <p>Multiplying both sides by <Math>{`A^{-1}`}</Math>:</p>
+            <MathBlock>{`\\mathbf{x}_1 = A^{-1}\\mathbf{b} = \\mathbf{x}_2`}</MathBlock>
+            <p>Therefore, the solution is unique.</p>
+          </>
+        }
+      >
         <p>
           For an invertible matrix <Math>A</Math>:
         </p>

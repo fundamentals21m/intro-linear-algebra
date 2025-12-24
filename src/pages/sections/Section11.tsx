@@ -56,7 +56,20 @@ export default function Section11() {
         </p>
       </Definition>
 
-      <Theorem title="Subspace Test" className="my-6">
+      <Theorem
+        title="Subspace Test"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>(⟹)</strong> If <Math>S</Math> is a subspace, it's closed under addition and scalar multiplication, so <Math>{`c\\mathbf{v} + d\\mathbf{w} \\in S`}</Math>.</p>
+            <p className="mt-2"><strong>(⟸)</strong> Assume linear combinations stay in <Math>S</Math>. Then:</p>
+            <p>• <strong>Contains zero:</strong> <Math>{`0\\mathbf{v} = \\mathbf{0} \\in S`}</Math></p>
+            <p>• <strong>Closed under addition:</strong> <Math>{`1\\mathbf{v} + 1\\mathbf{w} = \\mathbf{v} + \\mathbf{w} \\in S`}</Math></p>
+            <p>• <strong>Closed under scalar mult:</strong> <Math>{`c\\mathbf{v} + 0\\mathbf{w} = c\\mathbf{v} \\in S`}</Math></p>
+            <p>All other vector space axioms are inherited from the parent space.</p>
+          </>
+        }
+      >
         <p>
           A subset <Math>S</Math> of a vector space is a subspace if and only if all linear combinations
           <Math>{`c\\mathbf{v} + d\\mathbf{w}`}</Math> stay in <Math>S</Math>.
@@ -97,7 +110,18 @@ export default function Section11() {
         </MathBlock>
       </Definition>
 
-      <Theorem title="Solvability Condition" className="my-6">
+      <Theorem
+        title="Solvability Condition"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>(⟹)</strong> If <Math>{`A\\mathbf{x} = \\mathbf{b}`}</Math> has a solution <Math>{`\\mathbf{x}_0`}</Math>, then:</p>
+            <MathBlock>{`\\mathbf{b} = A\\mathbf{x}_0 = x_1\\mathbf{a}_1 + x_2\\mathbf{a}_2 + \\cdots + x_n\\mathbf{a}_n`}</MathBlock>
+            <p>So <Math>{`\\mathbf{b}`}</Math> is a linear combination of the columns of <Math>A</Math>, hence <Math>{`\\mathbf{b} \\in C(A)`}</Math>.</p>
+            <p className="mt-2"><strong>(⟸)</strong> If <Math>{`\\mathbf{b} \\in C(A)`}</Math>, then by definition <Math>{`\\mathbf{b}`}</Math> is a linear combination of the columns. The coefficients of this combination form the solution <Math>{`\\mathbf{x}`}</Math>.</p>
+          </>
+        }
+      >
         <p>
           <Math>{`A\\mathbf{x} = \\mathbf{b}`}</Math> is solvable if and only if <Math>{`\\mathbf{b}`}</Math> is in
           the column space <Math>C(A)</Math>.

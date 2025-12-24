@@ -123,7 +123,18 @@ export default function Section04() {
         </ol>
       </div>
 
-      <Theorem title="When Does the Solution Exist?" className="my-6">
+      <Theorem
+        title="When Does the Solution Exist?"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Case 1 (A invertible):</strong> If <Math>{`A^{-1}`}</Math> exists, then <Math>{`\\mathbf{x} = A^{-1}\\mathbf{b}`}</Math> is the unique solution, as shown in the Existence and Uniqueness theorem.</p>
+            <p className="mt-3"><strong>Case 2 (A not invertible):</strong> If <Math>A</Math> is singular, then <Math>{`\\det(A) = 0`}</Math>, meaning the columns of <Math>A</Math> are linearly dependent.</p>
+            <p>If <Math>{`\\mathbf{b}`}</Math> is not in the column space of <Math>A</Math>, there is no solution (the system is inconsistent).</p>
+            <p>If <Math>{`\\mathbf{b}`}</Math> is in the column space, there are infinitely many solutions because we can add any multiple of a nonzero solution to <Math>{`A\\mathbf{x} = \\mathbf{0}`}</Math>.</p>
+          </>
+        }
+      >
         <p>
           For a square matrix <Math>A</Math> with <Math>n</Math> equations in <Math>n</Math> unknowns:
         </p>

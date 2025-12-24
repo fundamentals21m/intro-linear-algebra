@@ -48,7 +48,21 @@ export default function Section02() {
         </p>
       </Example>
 
-      <Theorem title="Commutativity of Dot Product" className="my-6">
+      <Theorem
+        title="Commutativity of Dot Product"
+        className="my-6"
+        proof={
+          <>
+            <p>
+              Let <Math>{`\\mathbf{v} = (v_1, v_2, \\ldots, v_n)`}</Math> and <Math>{`\\mathbf{w} = (w_1, w_2, \\ldots, w_n)`}</Math>.
+            </p>
+            <p>By definition of the dot product:</p>
+            <MathBlock>{`\\mathbf{v} \\cdot \\mathbf{w} = v_1w_1 + v_2w_2 + \\cdots + v_nw_n`}</MathBlock>
+            <p>Since multiplication of real numbers is commutative (<Math>v_iw_i = w_iv_i</Math>):</p>
+            <MathBlock>{`= w_1v_1 + w_2v_2 + \\cdots + w_nv_n = \\mathbf{w} \\cdot \\mathbf{v}`}</MathBlock>
+          </>
+        }
+      >
         <p>
           The dot product is commutative:
         </p>
@@ -145,7 +159,27 @@ export default function Section02() {
         The dot product <Math>{`\\mathbf{v} \\cdot \\mathbf{w}`}</Math> reveals something important about the <em>angle</em> between <Math>{`\\mathbf{v}`}</Math> and <Math>{`\\mathbf{w}`}</Math>.
       </p>
 
-      <Theorem title="Dot Product and Angle" className="my-6">
+      <Theorem
+        title="Dot Product and Angle"
+        className="my-6"
+        proof={
+          <>
+            <p>
+              Consider the triangle formed by vectors <Math>{`\\mathbf{v}`}</Math>, <Math>{`\\mathbf{w}`}</Math>, and <Math>{`\\mathbf{v} - \\mathbf{w}`}</Math>.
+              By the Law of Cosines:
+            </p>
+            <MathBlock>{`\\|\\mathbf{v} - \\mathbf{w}\\|^2 = \\|\\mathbf{v}\\|^2 + \\|\\mathbf{w}\\|^2 - 2\\|\\mathbf{v}\\|\\|\\mathbf{w}\\|\\cos\\theta`}</MathBlock>
+            <p>Expanding the left side using the definition of length:</p>
+            <MathBlock>{`\\|\\mathbf{v} - \\mathbf{w}\\|^2 = (\\mathbf{v} - \\mathbf{w}) \\cdot (\\mathbf{v} - \\mathbf{w})`}</MathBlock>
+            <MathBlock>{`= \\mathbf{v} \\cdot \\mathbf{v} - 2\\mathbf{v} \\cdot \\mathbf{w} + \\mathbf{w} \\cdot \\mathbf{w}`}</MathBlock>
+            <MathBlock>{`= \\|\\mathbf{v}\\|^2 - 2\\mathbf{v} \\cdot \\mathbf{w} + \\|\\mathbf{w}\\|^2`}</MathBlock>
+            <p>Comparing the two expressions and simplifying:</p>
+            <MathBlock>{`-2\\mathbf{v} \\cdot \\mathbf{w} = -2\\|\\mathbf{v}\\|\\|\\mathbf{w}\\|\\cos\\theta`}</MathBlock>
+            <p>Therefore:</p>
+            <MathBlock>{`\\mathbf{v} \\cdot \\mathbf{w} = \\|\\mathbf{v}\\|\\|\\mathbf{w}\\|\\cos\\theta`}</MathBlock>
+          </>
+        }
+      >
         <p>
           If <Math>\theta</Math> is the angle between vectors <Math>{`\\mathbf{v}`}</Math> and <Math>{`\\mathbf{w}`}</Math>, then:
         </p>

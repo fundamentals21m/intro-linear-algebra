@@ -6,8 +6,8 @@ import path from 'path'
 // COURSE CONFIGURATION - Update these values for your course
 // =============================================================================
 const COURSE_ID = 'linalg'  // Short ID: 'ba', 'aa', 'crypto', etc.
-// Use '/' for standalone Vercel deployment, or `/math_academy/${COURSE_ID}/` for subdirectory
-const BASE_PATH = '/'
+// Use '/' for standalone Vercel deployment, or `/linalg-hub/` for hub deployment
+const BASE_PATH = '/linalg-hub/'
 // =============================================================================
 
 export default defineConfig({

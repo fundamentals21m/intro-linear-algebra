@@ -113,7 +113,28 @@ export default function Section01() {
         multiply <Math>{`\\mathbf{w}`}</Math> by <Math>d</Math>. Then add <Math>{`c\\mathbf{v} + d\\mathbf{w}`}</Math>.
       </p>
 
-      <Theorem title="Linear Combinations Fill the Plane" className="my-6">
+      <Theorem
+        title="Linear Combinations Fill the Plane"
+        className="my-6"
+        proof={
+          <>
+            <p>
+              We need to show that for any point <Math>(x, y)</Math>, there exist scalars <Math>c</Math> and <Math>d</Math> such that:
+            </p>
+            <MathBlock>{`c\\begin{bmatrix} 1 \\\\ 1 \\end{bmatrix} + d\\begin{bmatrix} 2 \\\\ 3 \\end{bmatrix} = \\begin{bmatrix} x \\\\ y \\end{bmatrix}`}</MathBlock>
+            <p>This gives us the system of equations:</p>
+            <MathBlock>{`c + 2d = x \\quad \\text{and} \\quad c + 3d = y`}</MathBlock>
+            <p>Subtracting the first equation from the second:</p>
+            <MathBlock>{`d = y - x`}</MathBlock>
+            <p>Substituting back into the first equation:</p>
+            <MathBlock>{`c = x - 2d = x - 2(y - x) = 3x - 2y`}</MathBlock>
+            <p>
+              Since we can always find <Math>c = 3x - 2y</Math> and <Math>d = y - x</Math> for any <Math>(x, y)</Math>,
+              every point in the plane can be reached as a linear combination of these two vectors.
+            </p>
+          </>
+        }
+      >
         <p>
           The combinations <Math>{`c\\begin{bmatrix} 1 \\\\ 1 \\end{bmatrix} + d\\begin{bmatrix} 2 \\\\ 3 \\end{bmatrix}`}</Math> fill
           the whole <Math>xy</Math> plane. They produce every <Math>{`\\begin{bmatrix} x \\\\ y \\end{bmatrix}`}</Math>.

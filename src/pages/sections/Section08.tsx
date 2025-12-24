@@ -37,7 +37,18 @@ export default function Section08() {
 
       <h2>Why Inverses Matter</h2>
 
-      <Theorem title="Solving <Math>{`A\\mathbf{x} = \\mathbf{b}`}</Math> with the Inverse" className="my-6">
+      <Theorem
+        title="Solving Ax = b with the Inverse"
+        className="my-6"
+        proof={
+          <>
+            <p>Starting with <Math>{`A\\mathbf{x} = \\mathbf{b}`}</Math>, multiply both sides on the left by <Math>{`A^{-1}`}</Math>:</p>
+            <MathBlock>{`A^{-1}(A\\mathbf{x}) = A^{-1}\\mathbf{b}`}</MathBlock>
+            <p>Using associativity and the definition <Math>{`A^{-1}A = I`}</Math>:</p>
+            <MathBlock>{`(A^{-1}A)\\mathbf{x} = A^{-1}\\mathbf{b} \\quad \\Rightarrow \\quad I\\mathbf{x} = A^{-1}\\mathbf{b} \\quad \\Rightarrow \\quad \\mathbf{x} = A^{-1}\\mathbf{b}`}</MathBlock>
+          </>
+        }
+      >
         <p>
           If <Math>A</Math> is invertible, then <Math>{`A\\mathbf{x} = \\mathbf{b}`}</Math> has exactly one solution:
         </p>
@@ -66,7 +77,20 @@ export default function Section08() {
 
       <h2>Properties of Inverses</h2>
 
-      <Theorem title="Key Properties" className="my-6">
+      <Theorem
+        title="Key Properties"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Property 1:</strong> Since <Math>{`A^{-1}A = I`}</Math>, the matrix <Math>A</Math> is the inverse of <Math>{`A^{-1}`}</Math>.</p>
+            <p className="mt-2"><strong>Property 2:</strong> We verify <Math>{`(B^{-1}A^{-1})(AB) = I`}</Math>:</p>
+            <MathBlock>{`(B^{-1}A^{-1})(AB) = B^{-1}(A^{-1}A)B = B^{-1}IB = B^{-1}B = I`}</MathBlock>
+            <p><strong>Property 3:</strong> Taking transposes of <Math>{`A^{-1}A = I`}</Math>:</p>
+            <MathBlock>{`(A^{-1}A)^T = I^T \\quad \\Rightarrow \\quad A^T(A^{-1})^T = I`}</MathBlock>
+            <p>This shows <Math>{`(A^{-1})^T`}</Math> is the inverse of <Math>{`A^T`}</Math>.</p>
+          </>
+        }
+      >
         <ul className="list-disc list-inside space-y-2">
           <li><Math>{`(A^{-1})^{-1} = A`}</Math></li>
           <li><Math>{`(AB)^{-1} = B^{-1}A^{-1}`}</Math> — note the <strong>reversed order</strong>!</li>
@@ -85,7 +109,18 @@ export default function Section08() {
 
       <h2>When Is a Matrix Invertible?</h2>
 
-      <Theorem title="Invertibility Conditions" className="my-6">
+      <Theorem
+        title="Invertibility Conditions"
+        className="my-6"
+        proof={
+          <>
+            <p>These conditions are all equivalent. We show the key connections:</p>
+            <p className="mt-2"><strong>n pivots ⟺ det ≠ 0:</strong> The determinant equals the product of the pivots times ±1 (from row exchanges).</p>
+            <p className="mt-2"><strong>det ≠ 0 ⟺ Ax = 0 has only x = 0:</strong> If <Math>{`\\det(A) \\neq 0`}</Math>, then <Math>A</Math> is invertible, so <Math>{`A^{-1}`}</Math> exists and <Math>{`\\mathbf{x} = A^{-1}\\mathbf{0} = \\mathbf{0}`}</Math>.</p>
+            <p className="mt-2"><strong>Only trivial solution ⟺ independent columns:</strong> Linear independence means the only combination that gives zero is the trivial one.</p>
+          </>
+        }
+      >
         <p>An <Math>n \times n</Math> matrix <Math>A</Math> is invertible if and only if:</p>
         <ul className="list-disc list-inside mt-2 space-y-1">
           <li>Elimination produces <Math>n</Math> pivots (no zeros on the diagonal of <Math>U</Math>).</li>

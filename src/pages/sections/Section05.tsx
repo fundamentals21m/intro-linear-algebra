@@ -132,7 +132,29 @@ export default function Section05() {
 
       <h2>When Elimination Fails</h2>
 
-      <Theorem title="Breakdown of Elimination" className="my-6">
+      <Theorem
+        title="Breakdown of Elimination"
+        className="my-6"
+        proof={
+          <>
+            <p>
+              Elimination produces the factorization <Math>A = LU</Math> where <Math>L</Math> is lower triangular with 1s on the diagonal
+              and <Math>U</Math> is upper triangular with pivots on the diagonal.
+            </p>
+            <p className="mt-2">
+              If a permanent zero pivot occurs (with all zeros below it in that column), then <Math>U</Math> cannot have <Math>n</Math> nonzero pivots.
+            </p>
+            <p className="mt-2">
+              Since <Math>{`\\det(A) = \\det(L) \\cdot \\det(U) = 1 \\cdot (\\text{product of pivots})`}</Math>, a zero pivot means <Math>{`\\det(A) = 0`}</Math>,
+              so <Math>A</Math> is singular.
+            </p>
+            <p className="mt-2">
+              For a singular matrix, either <Math>{`\\mathbf{b}`}</Math> is not in the column space (no solution), or <Math>{`\\mathbf{b}`}</Math> is in the
+              column space and any nullspace vector can be added (infinitely many solutions).
+            </p>
+          </>
+        }
+      >
         <p>
           Elimination fails when:
         </p>

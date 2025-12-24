@@ -57,6 +57,12 @@ export function Header({ onToggleSidebar, sidebarOpen }: HeaderProps) {
 
         {/* Center: Navigation */}
         <nav className="hidden md:flex items-center gap-6">
+          <a
+            href="/"
+            className="text-dark-400 hover:text-dark-100 transition-colors text-sm font-medium"
+          >
+            Hub
+          </a>
           <Link
             to="/"
             className="text-dark-400 hover:text-dark-100 transition-colors text-sm font-medium"
