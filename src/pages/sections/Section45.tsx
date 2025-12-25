@@ -26,7 +26,18 @@ export default function Section45() {
         </p>
       </Definition>
 
-      <Theorem title="Fundamental Axiom" className="my-6">
+      <Theorem
+        title="Fundamental Axiom"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Rounding model:</strong> Floating-point numbers are represented as <Math>{`\\pm m \\times 2^e`}</Math> where the mantissa <Math>m</Math> has finite precision.</p>
+            <p className="mt-2">When we compute <Math>{`a \\circ b`}</Math>, the exact result must be rounded to the nearest representable number.</p>
+            <p className="mt-2"><strong>Rounding error:</strong> The relative error from rounding is at most <Math>{`\\epsilon_{\\text{mach}}/2`}</Math> (round to nearest) or <Math>{`\\epsilon_{\\text{mach}}`}</Math> (truncation).</p>
+            <p className="mt-2">For IEEE double precision: 52 mantissa bits means <Math>{`\\epsilon_{\\text{mach}} = 2^{-52} \\approx 2.2 \\times 10^{-16}`}</Math>.</p>
+          </>
+        }
+      >
         <p>
           Every floating-point operation introduces relative error at most <Math>{`\\epsilon_{\\text{mach}}`}</Math>:
         </p>
@@ -63,7 +74,19 @@ export default function Section45() {
         </p>
       </Example>
 
-      <Theorem title="Error Bound" className="my-6">
+      <Theorem
+        title="Error Bound"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Setup:</strong> Let <Math>A(\\mathbf{x} + \\delta\\mathbf{x}) = \\mathbf{b} + \\delta\\mathbf{b}</Math>. Then <Math>A\\delta\\mathbf{x} = \\delta\\mathbf{b}</Math>, so <Math>\\delta\\mathbf{x} = A^{-1}\\delta\\mathbf{b}</Math>.</p>
+            <p className="mt-2"><strong>Bound on error:</strong> Taking norms:</p>
+            <MathBlock>{`\\|\\delta\\mathbf{x}\\| = \\|A^{-1}\\delta\\mathbf{b}\\| \\leq \\|A^{-1}\\| \\|\\delta\\mathbf{b}\\|`}</MathBlock>
+            <p className="mt-2"><strong>Relative error:</strong> From <Math>\\mathbf{b} = A\\mathbf{x}</Math>: <Math>\\|\\mathbf{b}\\| \\leq \\|A\\|\\|\\mathbf{x}\\|</Math>, so <Math>1/\\|\\mathbf{x}\\| \\leq \\|A\\|/\\|\\mathbf{b}\\|</Math>.</p>
+            <MathBlock>{`\\frac{\\|\\delta\\mathbf{x}\\|}{\\|\\mathbf{x}\\|} \\leq \\|A^{-1}\\| \\|\\delta\\mathbf{b}\\| \\cdot \\frac{\\|A\\|}{\\|\\mathbf{b}\\|} = \\kappa(A) \\frac{\\|\\delta\\mathbf{b}\\|}{\\|\\mathbf{b}\\|}`}</MathBlock>
+          </>
+        }
+      >
         <p>
           When solving <Math>Ax = b</Math> with small perturbation <Math>\delta b</Math>:
         </p>
@@ -101,7 +124,18 @@ export default function Section45() {
 
       <h2>Pivoting Strategies</h2>
 
-      <Theorem title="Partial Pivoting" className="my-6">
+      <Theorem
+        title="Partial Pivoting"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Problem without pivoting:</strong> If the pivot <Math>{`a_{kk}`}</Math> is small, we divide by a tiny number, amplifying errors.</p>
+            <p className="mt-2"><strong>Strategy:</strong> At step <Math>k</Math>, find <Math>{`\\max_{i \\geq k} |a_{ik}|`}</Math> and swap rows to put this maximum in position <Math>(k,k)</Math>.</p>
+            <p className="mt-2"><strong>Bounded multipliers:</strong> The multipliers are <Math>{`l_{ik} = a_{ik}/a_{kk}`}</Math>. After pivoting, <Math>{`|a_{ik}| \\leq |a_{kk}|`}</Math> for all <Math>{`i > k`}</Math>, so <Math>{`|l_{ik}| \\leq 1`}</Math>.</p>
+            <p className="mt-2"><strong>Stability:</strong> Bounded multipliers prevent exponential error growth. The factorization <Math>PA = LU</Math> is backward stable: the computed <Math>{`\\tilde{L}\\tilde{U} = PA + E`}</Math> where <Math>{`\\|E\\|`}</Math> is small.</p>
+          </>
+        }
+      >
         <p>
           <strong>Partial pivoting</strong>: at each step, swap rows to put the largest entry in the pivot position.
         </p>

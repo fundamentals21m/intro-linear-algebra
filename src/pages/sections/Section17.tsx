@@ -48,7 +48,19 @@ export default function Section17() {
         </p>
       </Definition>
 
-      <Theorem title="Properties of P" className="my-6">
+      <Theorem
+        title="Properties of P"
+        className="my-6"
+        proof={
+          <>
+            <p><strong><Math>P^2 = P</Math>:</strong> Once a vector is projected onto the line, projecting again doesn't change it. Algebraically:</p>
+            <MathBlock>{`P^2 = \\frac{\\mathbf{a}\\mathbf{a}^T}{\\mathbf{a}^T\\mathbf{a}} \\cdot \\frac{\\mathbf{a}\\mathbf{a}^T}{\\mathbf{a}^T\\mathbf{a}} = \\frac{\\mathbf{a}(\\mathbf{a}^T\\mathbf{a})\\mathbf{a}^T}{(\\mathbf{a}^T\\mathbf{a})^2} = \\frac{\\mathbf{a}\\mathbf{a}^T}{\\mathbf{a}^T\\mathbf{a}} = P`}</MathBlock>
+            <p className="mt-2"><strong><Math>P^T = P</Math>:</strong></p>
+            <MathBlock>{`P^T = \\left(\\frac{\\mathbf{a}\\mathbf{a}^T}{\\mathbf{a}^T\\mathbf{a}}\\right)^T = \\frac{(\\mathbf{a}\\mathbf{a}^T)^T}{\\mathbf{a}^T\\mathbf{a}} = \\frac{\\mathbf{a}\\mathbf{a}^T}{\\mathbf{a}^T\\mathbf{a}} = P`}</MathBlock>
+            <p className="mt-2"><strong>Rank = 1:</strong> <Math>{`P = \\mathbf{a}\\mathbf{a}^T / (\\mathbf{a}^T\\mathbf{a})`}</Math> is a scalar times a rank-1 matrix (column times row).</p>
+          </>
+        }
+      >
         <ul className="list-disc list-inside space-y-2">
           <li><Math>P^2 = P</Math> (projecting twice = projecting once)</li>
           <li><Math>P^T = P</Math> (P is symmetric)</li>
@@ -77,7 +89,20 @@ export default function Section17() {
         </p>
       </Definition>
 
-      <Theorem title="Projection Matrix P (onto a subspace)" className="my-6">
+      <Theorem
+        title="Projection Matrix P (onto a subspace)"
+        className="my-6"
+        proof={
+          <>
+            <p>We need <Math>{`\\mathbf{p} = A\\hat{x}`}</Math> where the error <Math>{`\\mathbf{e} = \\mathbf{b} - A\\hat{x}`}</Math> is perpendicular to <Math>C(A)</Math>.</p>
+            <p className="mt-2">For <Math>{`\\mathbf{e}`}</Math> to be perpendicular to every column of <Math>A</Math>:</p>
+            <MathBlock>{`A^T(\\mathbf{b} - A\\hat{x}) = \\mathbf{0} \\quad \\Rightarrow \\quad A^TA\\hat{x} = A^T\\mathbf{b}`}</MathBlock>
+            <p>These are the normal equations. Solving for <Math>{`\\hat{x}`}</Math> (assuming <Math>A</Math> has independent columns):</p>
+            <MathBlock>{`\\hat{x} = (A^TA)^{-1}A^T\\mathbf{b}`}</MathBlock>
+            <p>The projection is <Math>{`\\mathbf{p} = A\\hat{x} = A(A^TA)^{-1}A^T\\mathbf{b} = P\\mathbf{b}`}</Math>.</p>
+          </>
+        }
+      >
         <MathBlock>
           {`P = A(A^TA)^{-1}A^T`}
         </MathBlock>
@@ -101,7 +126,18 @@ export default function Section17() {
 
       <h2>The Error Vector</h2>
 
-      <Theorem title="Error is Perpendicular" className="my-6">
+      <Theorem
+        title="Error is Perpendicular"
+        className="my-6"
+        proof={
+          <>
+            <p>The projection <Math>{`\\mathbf{p}`}</Math> is the closest point to <Math>{`\\mathbf{b}`}</Math> in <Math>C(A)</Math>. For <Math>{`\\mathbf{p}`}</Math> to minimize distance, the error <Math>{`\\mathbf{e}`}</Math> must be perpendicular to <Math>C(A)</Math>.</p>
+            <p className="mt-2">Algebraically: <Math>{`\\hat{x}`}</Math> satisfies <Math>{`A^TA\\hat{x} = A^T\\mathbf{b}`}</Math>, which rearranges to:</p>
+            <MathBlock>{`A^TA\\hat{x} - A^T\\mathbf{b} = \\mathbf{0} \\quad \\Rightarrow \\quad A^T(A\\hat{x} - \\mathbf{b}) = \\mathbf{0} \\quad \\Rightarrow \\quad A^T\\mathbf{e} = \\mathbf{0}`}</MathBlock>
+            <p>Since <Math>{`A^T\\mathbf{e} = \\mathbf{0}`}</Math>, the error is orthogonal to every column of <Math>A</Math>, hence to the entire column space.</p>
+          </>
+        }
+      >
         <p>
           The error <Math>{`\\mathbf{e} = \\mathbf{b} - \\mathbf{p} = \\mathbf{b} - A\\hat{x}`}</Math> is perpendicular
           to the column space:

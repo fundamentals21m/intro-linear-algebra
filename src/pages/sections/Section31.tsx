@@ -13,7 +13,19 @@ export default function Section31() {
 
       <h2>Geometric Interpretation</h2>
 
-      <Theorem title="Three Steps of Multiplication by A" className="my-6">
+      <Theorem
+        title="Three Steps of Multiplication by A"
+        className="my-6"
+        proof={
+          <>
+            <p>Let <Math>{`\\mathbf{x}`}</Math> be any vector. Using <Math>{`A = U\\Sigma V^T`}</Math>:</p>
+            <p className="mt-2"><strong>Step 1:</strong> <Math>{`\\mathbf{y} = V^T\\mathbf{x}`}</Math> expresses <Math>{`\\mathbf{x}`}</Math> in the basis of right singular vectors. Since <Math>V</Math> is orthogonal, this is a rotation/reflection.</p>
+            <p className="mt-2"><strong>Step 2:</strong> <Math>{`\\mathbf{z} = \\Sigma\\mathbf{y}`}</Math> stretches component <Math>i</Math> by <Math>\\sigma_i</Math>. Components beyond rank <Math>r</Math> become zero.</p>
+            <p className="mt-2"><strong>Step 3:</strong> <Math>{`A\\mathbf{x} = U\\mathbf{z}`}</Math> rotates from coordinate axes to the left singular vector basis.</p>
+            <p className="mt-2">Composing: <Math>{`A\\mathbf{x} = U(\\Sigma(V^T\\mathbf{x}))`}</Math>. The transformation decomposes into: rotation → scaling → rotation.</p>
+          </>
+        }
+      >
         <p>
           The factorization <Math>A = U\Sigma V^T</Math> means:
         </p>
@@ -92,7 +104,21 @@ export default function Section31() {
 
       <h2>Pseudoinverse</h2>
 
-      <Theorem title="The Moore-Penrose Pseudoinverse" className="my-6">
+      <Theorem
+        title="The Moore-Penrose Pseudoinverse"
+        className="my-6"
+        proof={
+          <>
+            <p>Define <Math>{`A^+ = V\\Sigma^+ U^T`}</Math> where <Math>\\Sigma^+</Math> is <Math>n \\times m</Math> with entries <Math>1/\\sigma_i</Math> for nonzero <Math>\\sigma_i</Math>.</p>
+            <p className="mt-2"><strong>For invertible <Math>A</Math>:</strong> All <Math>{`\\sigma_i > 0`}</Math>, so <Math>{`\\Sigma^+ = \\Sigma^{-1}`}</Math>. Then:</p>
+            <MathBlock>{`A^+ = V\\Sigma^{-1}U^T = (U\\Sigma V^T)^{-1} = A^{-1}`}</MathBlock>
+            <p className="mt-2"><strong>Least-squares:</strong> The normal equations <Math>{`A^TAx = A^Tb`}</Math> have solution:</p>
+            <MathBlock>{`x = (A^TA)^{-1}A^Tb = (V\\Sigma^T\\Sigma V^T)^{-1}V\\Sigma^T U^T b`}</MathBlock>
+            <p className="mt-2">When <Math>A</Math> has full column rank, this simplifies to <Math>{`x = V(\\Sigma^T\\Sigma)^{-1}\\Sigma^T U^T b = A^+b`}</Math>.</p>
+            <p className="mt-2">For rank-deficient <Math>A</Math>, <Math>A^+b</Math> gives the minimum-norm least-squares solution.</p>
+          </>
+        }
+      >
         <p>
           The <strong>pseudoinverse</strong> of <Math>A</Math> is:
         </p>
@@ -122,7 +148,22 @@ export default function Section31() {
 
       <h2>Polar Decomposition</h2>
 
-      <Theorem title="Polar Decomposition" className="my-6">
+      <Theorem
+        title="Polar Decomposition"
+        className="my-6"
+        proof={
+          <>
+            <p>Starting from the SVD <Math>{`A = U\\Sigma V^T`}</Math>, insert <Math>{`I = VV^T`}</Math>:</p>
+            <MathBlock>{`A = U\\Sigma V^T = (UV^T)(V\\Sigma V^T) = QS`}</MathBlock>
+            <p className="mt-2"><strong><Math>Q = UV^T</Math> is orthogonal:</strong></p>
+            <MathBlock>{`Q^TQ = (UV^T)^T(UV^T) = VU^TUV^T = VV^T = I`}</MathBlock>
+            <p className="mt-2"><strong><Math>{`S = V\\Sigma V^T`}</Math> is symmetric positive semidefinite:</strong></p>
+            <p>• Symmetric: <Math>{`S^T = (V\\Sigma V^T)^T = V\\Sigma^T V^T = V\\Sigma V^T = S`}</Math></p>
+            <p>• Positive semidefinite: <Math>{`x^TSx = x^TV\\Sigma V^Tx = (V^Tx)^T\\Sigma(V^Tx) = \\sum \\sigma_i y_i^2 \\geq 0`}</Math></p>
+            <p className="mt-2">Note: <Math>{`S^2 = V\\Sigma^2 V^T = A^TA`}</Math>, so <Math>{`S = \\sqrt{A^TA}`}</Math>.</p>
+          </>
+        }
+      >
         <p>
           Any matrix can be written as:
         </p>

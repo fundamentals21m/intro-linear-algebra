@@ -34,7 +34,20 @@ export default function Section37() {
 
       <h2>The FFT Algorithm</h2>
 
-      <Theorem title="The Key Idea" className="my-6">
+      <Theorem
+        title="The Key Idea"
+        className="my-6"
+        proof={
+          <>
+            <p>The DFT of <Math>{`\\mathbf{c}`}</Math> can be split into even and odd terms:</p>
+            <MathBlock>{`y_j = \\sum_{k=0}^{n-1} c_k \\omega^{jk} = \\sum_{k \\text{ even}} c_k \\omega^{jk} + \\sum_{k \\text{ odd}} c_k \\omega^{jk}`}</MathBlock>
+            <p className="mt-2">Let <Math>{`c_k^{(e)} = c_{2k}`}</Math> and <Math>{`c_k^{(o)} = c_{2k+1}`}</Math> for <Math>{`k = 0, \\ldots, n/2-1`}</Math>:</p>
+            <MathBlock>{`y_j = \\sum_{k=0}^{n/2-1} c_k^{(e)} \\omega^{2jk} + \\omega^j \\sum_{k=0}^{n/2-1} c_k^{(o)} \\omega^{2jk}`}</MathBlock>
+            <p className="mt-2">Since <Math>{`\\omega^2 = e^{-4\\pi i/n}`}</Math> is the <Math>(n/2)</Math>th root of unity, each sum is a DFT of size <Math>n/2</Math>.</p>
+            <p className="mt-2">The permutation <Math>P</Math> separates even and odd indices; <Math>D</Math> provides the "twiddle factors" <Math>{`\\omega^j`}</Math>.</p>
+          </>
+        }
+      >
         <p>
           The FFT exploits a <strong>recursive structure</strong> in <Math>F_n</Math>:
         </p>
@@ -57,7 +70,20 @@ export default function Section37() {
 
       <h2>Properties of the Fourier Matrix</h2>
 
-      <Theorem title="Fourier Matrix Properties" className="my-6">
+      <Theorem
+        title="Fourier Matrix Properties"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Symmetric:</strong> <Math>{`(F_n)_{jk} = \\omega^{jk} = \\omega^{kj} = (F_n)_{kj}`}</Math>.</p>
+            <p className="mt-2"><strong>Orthogonal columns:</strong> For columns <Math>j</Math> and <Math>k</Math>:</p>
+            <MathBlock>{`(F_n^H F_n)_{jk} = \\sum_{m=0}^{n-1} \\overline{\\omega^{mj}} \\omega^{mk} = \\sum_{m=0}^{n-1} \\omega^{m(k-j)}`}</MathBlock>
+            <p className="mt-2">If <Math>j = k</Math>: sum = <Math>n</Math>. If <Math>{`j \\neq k`}</Math>: this is a geometric series with ratio <Math>{`\\omega^{k-j} \\neq 1`}</Math>, so sum = <Math>0</Math>.</p>
+            <p className="mt-2"><strong>Inverse:</strong> From <Math>{`F_n^H F_n = nI`}</Math>, we get <Math>{`F_n^{-1} = \\frac{1}{n}F_n^H`}</Math>.</p>
+            <p className="mt-2"><strong>Unitary:</strong> <Math>{`(\\frac{1}{\\sqrt{n}}F_n)^H(\\frac{1}{\\sqrt{n}}F_n) = \\frac{1}{n}F_n^H F_n = I`}</Math>.</p>
+          </>
+        }
+      >
         <ul className="list-disc list-inside space-y-2">
           <li><strong>Symmetric:</strong> <Math>F_n = F_n^T</Math></li>
           <li><strong>Orthogonal columns:</strong> <Math>F_n^H F_n = nI</Math></li>
@@ -68,7 +94,19 @@ export default function Section37() {
 
       <h2>Convolution</h2>
 
-      <Theorem title="Convolution Theorem" className="my-6">
+      <Theorem
+        title="Convolution Theorem"
+        className="my-6"
+        proof={
+          <>
+            <p>Let <Math>{`\\hat{a} = F_na`}</Math> and <Math>{`\\hat{b} = F_nb`}</Math> be the DFTs. The <Math>k</Math>th component of the convolution's DFT is:</p>
+            <MathBlock>{`\\widehat{(a*b)}_k = \\sum_{m=0}^{n-1} (a*b)_m \\omega^{mk} = \\sum_{m=0}^{n-1} \\left(\\sum_{j=0}^{n-1} a_j b_{m-j}\\right) \\omega^{mk}`}</MathBlock>
+            <p className="mt-2">Rearranging (with indices mod <Math>n</Math>):</p>
+            <MathBlock>{`= \\sum_{j=0}^{n-1} a_j \\omega^{jk} \\sum_{\\ell=0}^{n-1} b_\\ell \\omega^{\\ell k} = \\hat{a}_k \\cdot \\hat{b}_k`}</MathBlock>
+            <p className="mt-2">Thus <Math>{`\\mathcal{F}(a*b) = \\mathcal{F}(a) \\odot \\mathcal{F}(b)`}</Math> (componentwise product).</p>
+          </>
+        }
+      >
         <p>
           The <strong>convolution</strong> of vectors <Math>a</Math> and <Math>b</Math>:
         </p>
@@ -112,7 +150,19 @@ export default function Section37() {
 
       <h2>The Roots of Unity</h2>
 
-      <Theorem title="Roots of Unity" className="my-6">
+      <Theorem
+        title="Roots of Unity"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Solutions:</strong> By Euler's formula, <Math>{`(e^{2\\pi ik/n})^n = e^{2\\pi ik} = 1`}</Math> for any integer <Math>k</Math>.</p>
+            <p className="mt-2">For <Math>{`k = 0, 1, \\ldots, n-1`}</Math>, we get <Math>n</Math> distinct roots (since <Math>{`|\\omega_k| = 1`}</Math> and the arguments are evenly spaced by <Math>{`2\\pi/n`}</Math>).</p>
+            <p className="mt-2"><strong>Sum equals zero:</strong> Let <Math>{`\\omega = e^{2\\pi i/n}`}</Math>. The sum is a geometric series:</p>
+            <MathBlock>{`S = 1 + \\omega + \\omega^2 + \\cdots + \\omega^{n-1} = \\frac{1 - \\omega^n}{1 - \\omega} = \\frac{1 - 1}{1 - \\omega} = 0`}</MathBlock>
+            <p className="mt-2">(Valid since <Math>{`\\omega \\neq 1`}</Math> for <Math>{`n > 1`}</Math>.)</p>
+          </>
+        }
+      >
         <p>
           The <Math>n</Math>th roots of unity are the solutions to <Math>z^n = 1</Math>:
         </p>

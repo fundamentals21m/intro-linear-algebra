@@ -13,7 +13,20 @@ export default function Section22() {
 
       <h2>Cramer's Rule</h2>
 
-      <Theorem title="Cramer's Rule" className="my-6">
+      <Theorem
+        title="Cramer's Rule"
+        className="my-6"
+        proof={
+          <>
+            <p>Let <Math>{`\\mathbf{x}`}</Math> be the solution to <Math>{`A\\mathbf{x} = \\mathbf{b}`}</Math>. Consider the matrix <Math>B_j</Math> with column <Math>j</Math> replaced by <Math>{`\\mathbf{b}`}</Math>.</p>
+            <p className="mt-2">We can write:</p>
+            <MathBlock>{`B_j = A \\cdot \\text{(matrix with } \\mathbf{x} \\text{ in column } j\\text{, identity elsewhere)}`}</MathBlock>
+            <p>This is because <Math>{`A\\mathbf{x} = \\mathbf{b}`}</Math> fills column <Math>j</Math> with <Math>{`\\mathbf{b}`}</Math>, and the identity columns are unchanged.</p>
+            <p className="mt-2">Taking determinants: <Math>\det B_j = \det A \cdot x_j</Math> (the special matrix has det = <Math>x_j</Math>).</p>
+            <p>Solving: <Math>x_j = \det B_j / \det A</Math>.</p>
+          </>
+        }
+      >
         <p>
           If <Math>\det A \neq 0</Math>, the solution to <Math>{`A\\mathbf{x} = \\mathbf{b}`}</Math> is:
         </p>
@@ -45,7 +58,20 @@ export default function Section22() {
 
       <h2>Formula for the Inverse</h2>
 
-      <Theorem title="Inverse Using Cofactors" className="my-6">
+      <Theorem
+        title="Inverse Using Cofactors"
+        className="my-6"
+        proof={
+          <>
+            <p>We need to verify <Math>A \cdot (C^T / \det A) = I</Math>.</p>
+            <p className="mt-2">The <Math>(i, j)</Math> entry of <Math>A C^T</Math> is:</p>
+            <MathBlock>{`\\sum_k a_{ik} C_{jk} = \\sum_k a_{ik} \\cdot (\\text{cofactor of } a_{jk})`}</MathBlock>
+            <p className="mt-2">• If <Math>i = j</Math>: This is cofactor expansion along row <Math>i</Math>, giving <Math>\det A</Math>.</p>
+            <p className="mt-2">• If <Math>i \neq j</Math>: This is cofactor expansion of a matrix with row <Math>i</Math> copied to row <Math>j</Math> (two equal rows), giving 0.</p>
+            <p className="mt-2">So <Math>A C^T = (\det A) I</Math>, and dividing by <Math>\det A</Math> gives the formula.</p>
+          </>
+        }
+      >
         <p>
           The inverse of <Math>A</Math> is:
         </p>
@@ -70,7 +96,19 @@ export default function Section22() {
 
       <h2>Determinants and Volume</h2>
 
-      <Theorem title="Volume as Determinant" className="my-6">
+      <Theorem
+        title="Volume as Determinant"
+        className="my-6"
+        proof={
+          <>
+            <p>We verify the three defining properties of determinant correspond to volume properties:</p>
+            <p className="mt-2"><strong>Property 1:</strong> The box with edges <Math>{`\\mathbf{e}_1, \\ldots, \\mathbf{e}_n`}</Math> (identity matrix) is the unit cube with volume 1.</p>
+            <p className="mt-2"><strong>Property 2:</strong> Exchanging two edges changes orientation (right-hand vs left-hand), flipping the sign.</p>
+            <p className="mt-2"><strong>Property 3:</strong> Volume is linear in each edge. Scaling one edge by <Math>c</Math> scales the volume by <Math>c</Math>. Adding a multiple of one edge to another doesn't change volume (shearing preserves volume).</p>
+            <p className="mt-2">Since volume satisfies the same axioms as determinant, they must be equal (up to sign for orientation).</p>
+          </>
+        }
+      >
         <p>
           If the rows (or columns) of <Math>A</Math> are the edges of a box in <Math>{`\\mathbf{R}^n`}</Math>:
         </p>

@@ -25,7 +25,19 @@ export default function Section46() {
         </p>
       </Definition>
 
-      <Theorem title="Convergence" className="my-6">
+      <Theorem
+        title="Convergence"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Error recurrence:</strong> Let <Math>\\mathbf{e}_k = \\mathbf{x}_k - \\mathbf{x}^*</Math> be the error. Since <Math>\\mathbf{x}^*</Math> is the fixed point:</p>
+            <MathBlock>{`\\mathbf{e}_{k+1} = M^{-1}N\\mathbf{e}_k = (M^{-1}N)^k \\mathbf{e}_0`}</MathBlock>
+            <p className="mt-2"><strong>Power of matrix:</strong> For <Math>B = M^{-1}N</Math>, <Math>B^k \\to 0</Math> as <Math>k \\to \\infty</Math> if and only if <Math>\\rho(B) &lt; 1</Math>.</p>
+            <p className="mt-2"><strong>Why:</strong> If <Math>\\lambda</Math> is an eigenvalue of <Math>B</Math> with <Math>|\\lambda| \\geq 1</Math>, then <Math>B^k\\mathbf{v} = \\lambda^k \\mathbf{v}</Math> does not converge to zero.</p>
+            <p className="mt-2">Conversely, if <Math>\\rho(B) &lt; 1</Math>, all eigenvalue components decay, and <Math>\\|B^k\\| \\to 0</Math>.</p>
+          </>
+        }
+      >
         <p>
           The iteration converges if and only if:
         </p>
@@ -88,7 +100,20 @@ export default function Section46() {
         </p>
       </Definition>
 
-      <Theorem title="Conjugate Gradient Method" className="my-6">
+      <Theorem
+        title="Conjugate Gradient Method"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Objective:</strong> The minimum of <Math>{`f(\\mathbf{x}) = \\frac{1}{2}\\mathbf{x}^TA\\mathbf{x} - \\mathbf{b}^T\\mathbf{x}`}</Math> occurs where <Math>{`\\nabla f = A\\mathbf{x} - \\mathbf{b} = \\mathbf{0}`}</Math>, i.e., at the solution of <Math>{`A\\mathbf{x} = \\mathbf{b}`}</Math>.</p>
+            <p className="mt-2"><strong>Finite termination:</strong> CG generates search directions <Math>{`\\mathbf{p}_0, \\mathbf{p}_1, \\ldots`}</Math> that are <Math>A</Math>-conjugate: <Math>{`\\mathbf{p}_i^T A \\mathbf{p}_j = 0`}</Math> for <Math>{`i \\neq j`}</Math>.</p>
+            <p className="mt-2">These form a basis for the Krylov subspace <Math>{`\\mathcal{K}_k`}</Math>. Since <Math>{`\\dim \\mathcal{K}_n = n`}</Math>, exact solution is found in at most <Math>n</Math> steps.</p>
+            <p className="mt-2"><strong>Error bound:</strong> Using Chebyshev polynomials:</p>
+            <MathBlock>{`\\|\\mathbf{e}_k\\|_A \\leq 2\\left(\\frac{\\sqrt{\\kappa}-1}{\\sqrt{\\kappa}+1}\\right)^k \\|\\mathbf{e}_0\\|_A`}</MathBlock>
+            <p className="mt-2">where <Math>{`\\|\\mathbf{e}\\|_A = \\sqrt{\\mathbf{e}^T A \\mathbf{e}}`}</Math> is the energy norm.</p>
+          </>
+        }
+      >
         <p>
           For symmetric positive definite <Math>A</Math>, <strong>conjugate gradients (CG)</strong>
           minimizes:

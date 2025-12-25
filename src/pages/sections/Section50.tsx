@@ -14,7 +14,18 @@ export default function Section50() {
 
       <h2>Dimensionality Reduction</h2>
 
-      <Theorem title="PCA Revisited" className="my-6">
+      <Theorem
+        title="PCA Revisited"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Goal:</strong> Find directions of maximum variance. The variance along direction <Math>\\mathbf{v}</Math> (unit vector) is <Math>\\mathbf{v}^T \\Sigma \\mathbf{v}</Math> where <Math>\\Sigma</Math> is the covariance matrix.</p>
+            <p className="mt-2"><strong>Solution:</strong> Maximize <Math>\\mathbf{v}^T \\Sigma \\mathbf{v}</Math> subject to <Math>\\|\\mathbf{v}\\| = 1</Math>. By Lagrange multipliers, <Math>\\Sigma \\mathbf{v} = \\lambda \\mathbf{v}</Math>.</p>
+            <p className="mt-2">The principal components are eigenvectors of <Math>\\Sigma</Math>. The variance along each is its eigenvalue.</p>
+            <p className="mt-2"><strong>SVD connection:</strong> For centered data <Math>X</Math>, <Math>\\Sigma \\propto X^TX</Math>. The SVD <Math>X = U\\Sigma V^T</Math> gives the same principal directions in <Math>V</Math>.</p>
+          </>
+        }
+      >
         <p>
           <strong>Principal Component Analysis</strong> projects high-dimensional data to lower dimensions:
         </p>
@@ -42,7 +53,18 @@ export default function Section50() {
         </p>
       </Definition>
 
-      <Theorem title="Support Vector Machines" className="my-6">
+      <Theorem
+        title="Support Vector Machines"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Margin calculation:</strong> For a separating hyperplane <Math>\\mathbf{w}^T\\mathbf{x} + b = 0</Math>, the distance from point <Math>\\mathbf{x}_i</Math> to the hyperplane is <Math>|\\mathbf{w}^T\\mathbf{x}_i + b|/\\|\\mathbf{w}\\|</Math>.</p>
+            <p className="mt-2"><strong>Constraint normalization:</strong> Scale <Math>\\mathbf{w}, b</Math> so the closest points satisfy <Math>|\\mathbf{w}^T\\mathbf{x}_i + b| = 1</Math>. Then margin = <Math>1/\\|\\mathbf{w}\\|</Math>.</p>
+            <p className="mt-2"><strong>Maximize margin:</strong> Maximize <Math>1/\\|\\mathbf{w}\\|</Math> ⟺ minimize <Math>\\|\\mathbf{w}\\|^2</Math>.</p>
+            <p className="mt-2"><strong>Support vectors:</strong> The constraints <Math>y_i(\\mathbf{w}^T\\mathbf{x}_i + b) \\geq 1</Math> are active (equality) only for points on the margin boundaries. These are the support vectors; they determine the solution.</p>
+          </>
+        }
+      >
         <p>
           SVM finds the maximum-margin hyperplane:
         </p>
@@ -119,7 +141,23 @@ export default function Section50() {
 
       <h2>Regularization</h2>
 
-      <Theorem title="Ridge Regression" className="my-6">
+      <Theorem
+        title="Ridge Regression"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Objective:</strong> Minimize <Math>{`f(\\boldsymbol{\\beta}) = \\|X\\boldsymbol{\\beta} - \\mathbf{y}\\|^2 + \\lambda\\|\\boldsymbol{\\beta}\\|^2`}</Math>.</p>
+            <p className="mt-2"><strong>Derivative:</strong> <Math>{`\\frac{\\partial f}{\\partial \\boldsymbol{\\beta}} = 2X^T(X\\boldsymbol{\\beta} - \\mathbf{y}) + 2\\lambda\\boldsymbol{\\beta} = 0`}</Math>.</p>
+            <p className="mt-2"><strong>Solve:</strong> <Math>{`(X^TX + \\lambda I)\\boldsymbol{\\beta} = X^T\\mathbf{y}`}</Math>, giving <Math>{`\\hat{\\boldsymbol{\\beta}} = (X^TX + \\lambda I)^{-1}X^T\\mathbf{y}`}</Math>.</p>
+            <p className="mt-2"><strong>Why it works:</strong> Adding <Math>{`\\lambda I`}</Math> shifts all eigenvalues of <Math>X^TX</Math> up by <Math>{`\\lambda`}</Math>. This:</p>
+            <ul className="list-disc list-inside ml-4">
+              <li>Ensures invertibility (no zero eigenvalues)</li>
+              <li>Reduces condition number: <Math>{`\\kappa = (\\sigma_{\\max}^2 + \\lambda)/(\\sigma_{\\min}^2 + \\lambda)`}</Math></li>
+              <li>Shrinks coefficients toward zero (bias-variance tradeoff)</li>
+            </ul>
+          </>
+        }
+      >
         <p>
           Add penalty to prevent overfitting:
         </p>

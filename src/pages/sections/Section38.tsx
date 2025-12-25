@@ -41,7 +41,18 @@ export default function Section38() {
 
       <h2>Kirchhoff's Laws</h2>
 
-      <Theorem title="Kirchhoff's Current Law (Nullspace)" className="my-6">
+      <Theorem
+        title="Kirchhoff's Current Law (Nullspace)"
+        className="my-6"
+        proof={
+          <>
+            <p>For edge <Math>e</Math> from node <Math>i</Math> to node <Math>j</Math>, row <Math>e</Math> of <Math>A</Math> has <Math>-1</Math> at column <Math>i</Math> and <Math>+1</Math> at column <Math>j</Math>.</p>
+            <p className="mt-2">Thus <Math>(A\\mathbf{x})_e = x_j - x_i</Math> = voltage difference across edge <Math>e</Math>.</p>
+            <p className="mt-2"><strong>Nullspace:</strong> <Math>A\\mathbf{x} = \\mathbf{0}</Math> means all voltage differences are zero: <Math>x_j = x_i</Math> for all edges.</p>
+            <p className="mt-2">In a connected graph, this implies all <Math>x_i</Math> are equal. Thus <Math>N(A) = \\text{span}(\\mathbf{1})</Math> where <Math>\\mathbf{1} = (1, 1, \\ldots, 1)^T</Math>.</p>
+          </>
+        }
+      >
         <p>
           If <Math>{`\\mathbf{x}`}</Math> represents voltages at nodes and <Math>{`\\mathbf{y} = A\\mathbf{x}`}</Math>
           represents voltage differences across edges:
@@ -54,7 +65,19 @@ export default function Section38() {
         </p>
       </Theorem>
 
-      <Theorem title="Kirchhoff's Voltage Law (Left Nullspace)" className="my-6">
+      <Theorem
+        title="Kirchhoff's Voltage Law (Left Nullspace)"
+        className="my-6"
+        proof={
+          <>
+            <p>Column <Math>j</Math> of <Math>A^T</Math> = row <Math>j</Math> of <Math>A</Math> corresponds to node <Math>j</Math>.</p>
+            <p className="mt-2">The entry <Math>(A^T)_{je}</Math> is <Math>-1</Math> if edge <Math>e</Math> leaves node <Math>j</Math>, <Math>+1</Math> if it enters.</p>
+            <p className="mt-2">Thus <Math>(A^T\\mathbf{f})_j = \\sum_e A_{ej}f_e</Math> = (current in) − (current out) at node <Math>j</Math>.</p>
+            <p className="mt-2"><strong>Left nullspace:</strong> <Math>A^T\\mathbf{f} = \\mathbf{0}</Math> means current is conserved at every node.</p>
+            <p className="mt-2">Such <Math>\\mathbf{f}</Math> corresponds to current flowing around loops (cycles) in the graph. The dimension equals the number of independent loops = <Math>m - n + 1</Math> for a connected graph.</p>
+          </>
+        }
+      >
         <p>
           If <Math>{`\\mathbf{f}`}</Math> represents currents on edges:
         </p>
@@ -91,7 +114,19 @@ export default function Section38() {
         </p>
       </Example>
 
-      <Theorem title="Properties of the Laplacian" className="my-6">
+      <Theorem
+        title="Properties of the Laplacian"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Symmetric:</strong> <Math>{`(A^TA)^T = A^TA`}</Math>.</p>
+            <p className="mt-2"><strong>Positive semidefinite:</strong> <Math>{`\\mathbf{x}^TL\\mathbf{x} = \\mathbf{x}^TA^TA\\mathbf{x} = \\|A\\mathbf{x}\\|^2 \\geq 0`}</Math>.</p>
+            <p className="mt-2"><strong>Zero eigenvalue:</strong> <Math>{`L\\mathbf{1} = A^TA\\mathbf{1} = A^T\\mathbf{0} = \\mathbf{0}`}</Math> since each row of <Math>A</Math> has entries summing to 0.</p>
+            <p className="mt-2"><strong>Connected components:</strong> <Math>{`\\lambda = 0`}</Math> iff <Math>{`\\mathbf{x} \\in N(A)`}</Math>. For a connected graph, <Math>{`N(A) = \\text{span}(\\mathbf{1})`}</Math>. For <Math>k</Math> components, <Math>{`\\dim N(A) = k`}</Math>.</p>
+            <p className="mt-2"><strong>Algebraic connectivity:</strong> <Math>{`\\lambda_2 > 0`}</Math> iff the graph is connected. Larger <Math>{`\\lambda_2`}</Math> means the graph is "more connected" (harder to partition).</p>
+          </>
+        }
+      >
         <ul className="list-disc list-inside space-y-2">
           <li><Math>L</Math> is symmetric positive semidefinite</li>
           <li>Smallest eigenvalue is 0, with eigenvector <Math>{`\\mathbf{1} = (1, 1, \\ldots, 1)`}</Math></li>

@@ -46,7 +46,20 @@ export default function Section36() {
         </p>
       </Definition>
 
-      <Theorem title="Spectral Theorem for Hermitian Matrices" className="my-6">
+      <Theorem
+        title="Spectral Theorem for Hermitian Matrices"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Real eigenvalues:</strong> If <Math>{`A\\mathbf{x} = \\lambda\\mathbf{x}`}</Math>, take the conjugate transpose:</p>
+            <MathBlock>{`(A\\mathbf{x})^H = (\\lambda\\mathbf{x})^H \\implies \\mathbf{x}^H A^H = \\bar{\\lambda}\\mathbf{x}^H`}</MathBlock>
+            <p className="mt-2">Since <Math>{`A^H = A`}</Math>: <Math>{`\\mathbf{x}^H A = \\bar{\\lambda}\\mathbf{x}^H`}</Math>. Multiply on the right by <Math>{`\\mathbf{x}`}</Math>:</p>
+            <MathBlock>{`\\mathbf{x}^H A\\mathbf{x} = \\bar{\\lambda}\\mathbf{x}^H\\mathbf{x} = \\lambda\\mathbf{x}^H\\mathbf{x}`}</MathBlock>
+            <p className="mt-2">Since <Math>{`\\mathbf{x}^H\\mathbf{x} = \\|\\mathbf{x}\\|^2 \\neq 0`}</Math>, we have <Math>{`\\lambda = \\bar{\\lambda}`}</Math>, so <Math>{`\\lambda`}</Math> is real.</p>
+            <p className="mt-2"><strong>Orthogonal eigenvectors:</strong> For distinct eigenvalues, similar to the symmetric case: <Math>{`\\lambda_1(\\mathbf{x}^H\\mathbf{y}) = \\lambda_2(\\mathbf{x}^H\\mathbf{y})`}</Math> implies <Math>{`\\mathbf{x}^H\\mathbf{y} = 0`}</Math>.</p>
+          </>
+        }
+      >
         <p>If <Math>A = A^H</Math> (Hermitian), then:</p>
         <ol className="list-decimal list-inside space-y-2">
           <li>All eigenvalues are <strong>real</strong></li>
@@ -86,7 +99,21 @@ export default function Section36() {
         </p>
       </Definition>
 
-      <Theorem title="Properties of Unitary Matrices" className="my-6">
+      <Theorem
+        title="Properties of Unitary Matrices"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Preserves lengths:</strong></p>
+            <MathBlock>{`\\|U\\mathbf{x}\\|^2 = (U\\mathbf{x})^H(U\\mathbf{x}) = \\mathbf{x}^H U^H U \\mathbf{x} = \\mathbf{x}^H I \\mathbf{x} = \\|\\mathbf{x}\\|^2`}</MathBlock>
+            <p className="mt-2"><strong>Preserves inner products:</strong></p>
+            <MathBlock>{`\\langle U\\mathbf{x}, U\\mathbf{y} \\rangle = (U\\mathbf{x})^H(U\\mathbf{y}) = \\mathbf{x}^H U^H U \\mathbf{y} = \\mathbf{x}^H \\mathbf{y} = \\langle \\mathbf{x}, \\mathbf{y} \\rangle`}</MathBlock>
+            <p className="mt-2"><strong>Eigenvalues on unit circle:</strong> If <Math>{`U\\mathbf{x} = \\lambda\\mathbf{x}`}</Math>:</p>
+            <MathBlock>{`\\|\\mathbf{x}\\| = \\|U\\mathbf{x}\\| = |\\lambda|\\|\\mathbf{x}\\| \\implies |\\lambda| = 1`}</MathBlock>
+            <p className="mt-2"><strong>Determinant:</strong> <Math>|\\det U|^2 = \\det(U^H)\\det(U) = \\det(U^H U) = \\det I = 1</Math>.</p>
+          </>
+        }
+      >
         <ul className="list-disc list-inside space-y-2">
           <li><strong>Preserves lengths:</strong> <Math>{`\\|U\\mathbf{x}\\| = \\|\\mathbf{x}\\|`}</Math></li>
           <li><strong>Preserves inner products:</strong> <Math>{`\\langle U\\mathbf{x}, U\\mathbf{y} \\rangle = \\langle \\mathbf{x}, \\mathbf{y} \\rangle`}</Math></li>

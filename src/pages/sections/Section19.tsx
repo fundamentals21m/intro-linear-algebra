@@ -45,7 +45,19 @@ export default function Section19() {
         </p>
       </Definition>
 
-      <Theorem title="Properties of Orthogonal Q" className="my-6">
+      <Theorem
+        title="Properties of Orthogonal Q"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Preserves length:</strong></p>
+            <MathBlock>{`\\|Q\\mathbf{x}\\|^2 = (Q\\mathbf{x})^T(Q\\mathbf{x}) = \\mathbf{x}^TQ^TQ\\mathbf{x} = \\mathbf{x}^TI\\mathbf{x} = \\|\\mathbf{x}\\|^2`}</MathBlock>
+            <p className="mt-2"><strong>Preserves dot product:</strong></p>
+            <MathBlock>{`(Q\\mathbf{x})^T(Q\\mathbf{y}) = \\mathbf{x}^TQ^TQ\\mathbf{y} = \\mathbf{x}^TI\\mathbf{y} = \\mathbf{x}^T\\mathbf{y}`}</MathBlock>
+            <p className="mt-2"><strong>Square Q:</strong> If <Math>Q</Math> is square with <Math>Q^TQ = I</Math>, then <Math>Q</Math> is invertible with <Math>{`Q^{-1} = Q^T`}</Math>. Then <Math>QQ^T = Q(Q^{-1}) = I</Math>.</p>
+          </>
+        }
+      >
         <ul className="list-disc list-inside space-y-2">
           <li><Math>Q^TQ = I</Math> (columns are orthonormal)</li>
           <li><Math>{`\\|Q\\mathbf{x}\\| = \\|\\mathbf{x}\\|`}</Math> (preserves length)</li>
@@ -56,7 +68,20 @@ export default function Section19() {
 
       <h2>Projections with Orthonormal Columns</h2>
 
-      <Theorem title="Simplified Projection Formula" className="my-6">
+      <Theorem
+        title="Simplified Projection Formula"
+        className="my-6"
+        proof={
+          <>
+            <p>The general projection formula is <Math>{`P = A(A^TA)^{-1}A^T`}</Math>.</p>
+            <p className="mt-2">When <Math>A = Q</Math> has orthonormal columns, <Math>Q^TQ = I</Math>, so:</p>
+            <MathBlock>{`P = Q(Q^TQ)^{-1}Q^T = QI^{-1}Q^T = QQ^T`}</MathBlock>
+            <p className="mt-2">For the least squares solution <Math>{`\\hat{x}`}</Math>:</p>
+            <MathBlock>{`Q^TQ\\hat{x} = Q^T\\mathbf{b} \\quad \\Rightarrow \\quad I\\hat{x} = Q^T\\mathbf{b} \\quad \\Rightarrow \\quad \\hat{x} = Q^T\\mathbf{b}`}</MathBlock>
+            <p>No matrix inversion needed!</p>
+          </>
+        }
+      >
         <p>
           When <Math>Q</Math> has orthonormal columns, the projection formula simplifies:
         </p>
@@ -109,7 +134,18 @@ export default function Section19() {
 
       <h2>The QR Factorization</h2>
 
-      <Theorem title="A = QR" className="my-6">
+      <Theorem
+        title="A = QR"
+        className="my-6"
+        proof={
+          <>
+            <p>Gram-Schmidt expresses each column <Math>{`\\mathbf{a}_j`}</Math> of <Math>A</Math> in terms of <Math>{`\\mathbf{q}_1, \\ldots, \\mathbf{q}_j`}</Math>:</p>
+            <MathBlock>{`\\mathbf{a}_j = (\\mathbf{q}_1^T\\mathbf{a}_j)\\mathbf{q}_1 + (\\mathbf{q}_2^T\\mathbf{a}_j)\\mathbf{q}_2 + \\cdots + (\\mathbf{q}_j^T\\mathbf{a}_j)\\mathbf{q}_j`}</MathBlock>
+            <p className="mt-2">In matrix form: <Math>A = QR</Math> where <Math>{`R_{ij} = \\mathbf{q}_i^T\\mathbf{a}_j`}</Math>.</p>
+            <p className="mt-2"><strong>Why R is upper triangular:</strong> For <Math>i &gt; j</Math>, vector <Math>{`\\mathbf{q}_i`}</Math> is orthogonal to <Math>{`\\mathbf{a}_1, \\ldots, \\mathbf{a}_j`}</Math> (since Gram-Schmidt subtracts projections). So <Math>{`R_{ij} = \\mathbf{q}_i^T\\mathbf{a}_j = 0`}</Math> when <Math>i &gt; j</Math>.</p>
+          </>
+        }
+      >
         <p>
           Gram-Schmidt produces the factorization <Math>A = QR</Math>:
         </p>

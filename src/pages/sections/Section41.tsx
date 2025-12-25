@@ -47,7 +47,19 @@ export default function Section41() {
 
       <h2>Geometry of Linear Programming</h2>
 
-      <Theorem title="Fundamental Theorem of LP" className="my-6">
+      <Theorem
+        title="Fundamental Theorem of LP"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Convexity:</strong> The constraints <Math>A\\mathbf{x} = \\mathbf{b}</Math> and <Math>\\mathbf{x} \\geq \\mathbf{0}</Math> define an intersection of half-spaces, which is convex.</p>
+            <p className="mt-2"><strong>Optimum at vertex:</strong> Suppose <Math>\\mathbf{x}^*</Math> is optimal but not a vertex. Then <Math>\\mathbf{x}^* = \\alpha \\mathbf{y} + (1-\\alpha)\\mathbf{z}</Math> for feasible <Math>\\mathbf{y}, \\mathbf{z}</Math>.</p>
+            <p className="mt-2">The objective value <Math>\\mathbf{c}^T\\mathbf{x}^* = \\alpha \\mathbf{c}^T\\mathbf{y} + (1-\\alpha)\\mathbf{c}^T\\mathbf{z}</Math>.</p>
+            <p className="mt-2">If <Math>\\mathbf{x}^*</Math> is optimal, both <Math>\\mathbf{y}</Math> and <Math>\\mathbf{z}</Math> must also be optimal (otherwise we could improve). Continue until we reach a vertex.</p>
+            <p className="mt-2"><strong>Vertex = basic solution:</strong> A vertex is an extreme point where <Math>n - m</Math> variables are zero (the basic structure).</p>
+          </>
+        }
+      >
         <ul className="list-disc list-inside space-y-2">
           <li>The <strong>feasible region</strong> (set of valid <Math>{`\\mathbf{x}`}</Math>) is a convex polyhedron</li>
           <li>If an optimal solution exists, it occurs at a <strong>vertex</strong> (corner)</li>
@@ -71,7 +83,19 @@ export default function Section41() {
 
       <h2>The Simplex Method</h2>
 
-      <Theorem title="Simplex Algorithm" className="my-6">
+      <Theorem
+        title="Simplex Algorithm"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Correctness:</strong> At each step, we check if the current solution is optimal by examining the reduced costs.</p>
+            <p className="mt-2">If all reduced costs <Math>\\bar{c}_j \\geq 0</Math> for a minimization problem, we're at an optimum.</p>
+            <p className="mt-2"><strong>Progress:</strong> Each pivot moves to an adjacent vertex. The objective strictly improves (assuming non-degeneracy).</p>
+            <p className="mt-2"><strong>Termination:</strong> There are finitely many vertices (at most <Math>\\binom{n}{m}</Math>). Since we never revisit a vertex (objective improves), the algorithm terminates.</p>
+            <p className="mt-2"><strong>Adjacent vertices:</strong> Two vertices are adjacent if they share <Math>m-1</Math> basic variables. Moving between them = one variable enters, one leaves.</p>
+          </>
+        }
+      >
         <p>The <strong>simplex method</strong> solves LP by:</p>
         <ol className="list-decimal list-inside space-y-2">
           <li>Start at a basic feasible solution (vertex)</li>
@@ -93,7 +117,19 @@ export default function Section41() {
 
       <h2>Duality</h2>
 
-      <Theorem title="Dual Problem" className="my-6">
+      <Theorem
+        title="Dual Problem"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Weak duality:</strong> For any feasible <Math>\\mathbf{x}</Math> (primal) and <Math>\\mathbf{y}</Math> (dual):</p>
+            <MathBlock>{`\\mathbf{c}^T\\mathbf{x} \\geq \\mathbf{y}^T A \\mathbf{x} \\geq \\mathbf{y}^T \\mathbf{b} = \\mathbf{b}^T\\mathbf{y}`}</MathBlock>
+            <p className="mt-2">The first inequality uses <Math>A^T\\mathbf{y} \\leq \\mathbf{c}</Math>; the second uses <Math>A\\mathbf{x} \\geq \\mathbf{b}</Math>.</p>
+            <p className="mt-2"><strong>Strong duality:</strong> At optimality, the KKT conditions give <Math>\\mathbf{c}^T\\mathbf{x}^* = \\mathbf{b}^T\\mathbf{y}^*</Math>.</p>
+            <p className="mt-2">The gap closes because complementary slackness holds: if a constraint is not tight, the corresponding dual variable is zero.</p>
+          </>
+        }
+      >
         <p>
           Every LP (<strong>primal</strong>) has a <strong>dual</strong>:
         </p>

@@ -55,7 +55,20 @@ export default function Section34() {
         </p>
       </Definition>
 
-      <Theorem title="Matrix of T in Different Bases" className="my-6">
+      <Theorem
+        title="Matrix of T in Different Bases"
+        className="my-6"
+        proof={
+          <>
+            <p>Let <Math>{`[\\mathbf{x}]_{\\mathcal{B}}`}</Math> denote coordinates in basis <Math>\\mathcal{B}</Math>.</p>
+            <p className="mt-2">In basis <Math>\\mathcal{B}</Math>: <Math>{`[T(\\mathbf{x})]_{\\mathcal{B}} = A[\\mathbf{x}]_{\\mathcal{B}}`}</Math>.</p>
+            <p className="mt-2">The change of basis matrix <Math>P</Math> satisfies: <Math>{`[\\mathbf{x}]_{\\mathcal{B}} = P[\\mathbf{x}]_{\\mathcal{C}}`}</Math>.</p>
+            <p className="mt-2">In basis <Math>\\mathcal{C}</Math>:</p>
+            <MathBlock>{`[T(\\mathbf{x})]_{\\mathcal{C}} = P^{-1}[T(\\mathbf{x})]_{\\mathcal{B}} = P^{-1}A[\\mathbf{x}]_{\\mathcal{B}} = P^{-1}A(P[\\mathbf{x}]_{\\mathcal{C}}) = (P^{-1}AP)[\\mathbf{x}]_{\\mathcal{C}}`}</MathBlock>
+            <p className="mt-2">Therefore the matrix in basis <Math>\\mathcal{C}</Math> is <Math>B = P^{-1}AP</Math>.</p>
+          </>
+        }
+      >
         <p>
           If <Math>A</Math> is the matrix of <Math>T</Math> in basis <Math>{`\\mathcal{B}`}</Math> and
           <Math>B</Math> is the matrix in basis <Math>{`\\mathcal{C}`}</Math>:
@@ -70,7 +83,22 @@ export default function Section34() {
 
       <h2>The Best Basis</h2>
 
-      <Theorem title="Diagonalization as Change of Basis" className="my-6">
+      <Theorem
+        title="Diagonalization as Change of Basis"
+        className="my-6"
+        proof={
+          <>
+            <p>Let <Math>{`X = [\\mathbf{x}_1 \\cdots \\mathbf{x}_n]`}</Math> where <Math>{`A\\mathbf{x}_i = \\lambda_i \\mathbf{x}_i`}</Math>.</p>
+            <p className="mt-2">In the standard basis, the transformation has matrix <Math>A</Math>.</p>
+            <p className="mt-2">In the eigenvector basis <Math>{`\\{\\mathbf{x}_1, \\ldots, \\mathbf{x}_n\\}`}</Math>:</p>
+            <p className="mt-2">• <Math>X</Math> is the change of basis matrix from eigenvector basis to standard basis</p>
+            <p className="mt-2">• By the change of basis theorem: <Math>{`\\Lambda = X^{-1}AX`}</Math></p>
+            <p className="mt-2">In the eigenvector basis, <Math>{`T(\\mathbf{x}_i) = \\lambda_i \\mathbf{x}_i`}</Math>, so the matrix is diagonal:</p>
+            <MathBlock>{`\\Lambda = \\begin{bmatrix} \\lambda_1 & & 0 \\\\ & \\ddots & \\\\ 0 & & \\lambda_n \\end{bmatrix}`}</MathBlock>
+            <p className="mt-2">Each eigenvector coordinate is simply scaled by its eigenvalue.</p>
+          </>
+        }
+      >
         <p>
           If <Math>{`A = X\\Lambda X^{-1}`}</Math> (diagonalization), then:
         </p>
@@ -98,7 +126,21 @@ export default function Section34() {
 
       <h2>Properties Preserved Under Similarity</h2>
 
-      <Theorem title="Invariants of Similar Matrices" className="my-6">
+      <Theorem
+        title="Invariants of Similar Matrices"
+        className="my-6"
+        proof={
+          <>
+            <p>Let <Math>B = P^{-1}AP</Math>.</p>
+            <p className="mt-2"><strong>Eigenvalues:</strong> <Math>\\det(B - \\lambda I) = \\det(P^{-1}AP - \\lambda P^{-1}P) = \\det(P^{-1}(A - \\lambda I)P)</Math></p>
+            <MathBlock>{`= \\det(P^{-1})\\det(A - \\lambda I)\\det(P) = \\det(A - \\lambda I)`}</MathBlock>
+            <p className="mt-2">Same characteristic polynomial ⟹ same eigenvalues.</p>
+            <p className="mt-2"><strong>Determinant:</strong> <Math>\\det B = \\det(P^{-1}AP) = \\det(P^{-1})\\det(A)\\det(P) = \\det A</Math>.</p>
+            <p className="mt-2"><strong>Trace:</strong> <Math>\\text{tr}(B) = \\text{tr}(P^{-1}AP) = \\text{tr}(APP^{-1}) = \\text{tr}(A)</Math> (using <Math>\\text{tr}(XY) = \\text{tr}(YX)</Math>).</p>
+            <p className="mt-2"><strong>Rank:</strong> <Math>B\\mathbf{x} = \\mathbf{0}</Math> iff <Math>P^{-1}AP\\mathbf{x} = \\mathbf{0}</Math> iff <Math>A(P\\mathbf{x}) = \\mathbf{0}</Math>. Since <Math>P</Math> is invertible, <Math>\\dim N(B) = \\dim N(A)</Math>, so <Math>\\text{rank}(B) = \\text{rank}(A)</Math>.</p>
+          </>
+        }
+      >
         <p>Similar matrices share these properties:</p>
         <ul className="list-disc list-inside space-y-1">
           <li>Same <strong>eigenvalues</strong></li>

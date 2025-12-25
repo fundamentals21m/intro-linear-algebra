@@ -58,7 +58,18 @@ export default function Section15() {
         </div>
       </div>
 
-      <Theorem title="Dimension Formulas" className="my-6">
+      <Theorem
+        title="Dimension Formulas"
+        className="my-6"
+        proof={
+          <>
+            <p><strong><Math>{`\\dim C(A) = r`}</Math>:</strong> The pivot columns are a basis for <Math>C(A)</Math>. There are <Math>r</Math> pivots.</p>
+            <p className="mt-2"><strong><Math>{`\\dim C(A^T) = r`}</Math>:</strong> The nonzero rows of <Math>R</Math> are a basis for the row space. There are <Math>r</Math> nonzero rows (one per pivot).</p>
+            <p className="mt-2"><strong><Math>{`\\dim N(A) = n - r`}</Math>:</strong> There are <Math>n - r</Math> free variables, each giving one special solution. These <Math>n - r</Math> special solutions are independent and span the nullspace.</p>
+            <p className="mt-2"><strong><Math>{`\\dim N(A^T) = m - r`}</Math>:</strong> Apply the nullspace formula to <Math>A^T</Math>: this is an <Math>n \times m</Math> matrix with rank <Math>r</Math>, so <Math>{`\\dim N(A^T) = m - r`}</Math>.</p>
+          </>
+        }
+      >
         <ul className="list-disc list-inside space-y-2">
           <li><Math>\dim C(A) = \dim C(A^T) = r</Math> (the rank)</li>
           <li><Math>\dim N(A) = n - r</Math></li>
@@ -112,7 +123,18 @@ export default function Section15() {
         </div>
       </div>
 
-      <Theorem title="The Rank Theorem" className="my-6">
+      <Theorem
+        title="The Rank Theorem"
+        className="my-6"
+        proof={
+          <>
+            <p>Row reduction preserves the row space (each new row is a combination of previous rows). The row space of <Math>R</Math> equals the row space of <Math>A</Math>.</p>
+            <p className="mt-2">In <Math>R</Math>, the <Math>r</Math> nonzero rows are clearly independent (each has a leading 1 in a different column). So <Math>{`\\dim C(A^T) = r`}</Math>.</p>
+            <p className="mt-2">The pivot columns of <Math>A</Math> form a basis for <Math>C(A)</Math>, so <Math>{`\\dim C(A) = r`}</Math>.</p>
+            <p className="mt-2">Both dimensions equal <Math>r</Math>, the number of pivots.</p>
+          </>
+        }
+      >
         <p>
           <strong>Column rank = Row rank</strong>. The number of independent columns equals the number
           of independent rows.

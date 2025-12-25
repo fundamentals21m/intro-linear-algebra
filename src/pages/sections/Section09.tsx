@@ -81,7 +81,19 @@ export default function Section09() {
 
       <h2>Cost of Elimination</h2>
 
-      <Theorem title="Operation Count" className="my-6">
+      <Theorem
+        title="Operation Count"
+        className="my-6"
+        proof={
+          <>
+            <p>At step <Math>k</Math> of elimination, we work on an <Math>(n-k+1) \times (n-k+1)</Math> submatrix.</p>
+            <p className="mt-2">The work at step <Math>k</Math> is approximately <Math>(n-k)^2</Math> operations (one multiplication and subtraction for each entry below and to the right of pivot <Math>k</Math>).</p>
+            <p className="mt-2">Total work:</p>
+            <MathBlock>{`\\sum_{k=1}^{n-1}(n-k)^2 = (n-1)^2 + (n-2)^2 + \\cdots + 1^2 = \\frac{(n-1)n(2n-1)}{6} \\approx \\frac{n^3}{3}`}</MathBlock>
+            <p>For back/forward substitution: each of the <Math>n</Math> equations involves about <Math>n</Math> operations, giving <Math>n^2</Math> total.</p>
+          </>
+        }
+      >
         <p>
           For an <Math>n \times n</Math> matrix, elimination requires approximately:
         </p>

@@ -26,7 +26,20 @@ export default function Section39() {
         </p>
       </Definition>
 
-      <Theorem title="Properties of Stiffness Matrices" className="my-6">
+      <Theorem
+        title="Properties of Stiffness Matrices"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Symmetric (Maxwell-Betti):</strong> The force at node <Math>i</Math> due to unit displacement at node <Math>j</Math> equals the force at <Math>j</Math> due to unit displacement at <Math>i</Math>.</p>
+            <p className="mt-2">Physically: <Math>K_{ij}</Math> = work done by force at <Math>i</Math> when <Math>j</Math> moves = <Math>K_{ji}</Math> by reciprocity.</p>
+            <p className="mt-2"><strong>Positive semidefinite:</strong> The strain energy stored in the structure is:</p>
+            <MathBlock>{`U = \\frac{1}{2}\\mathbf{u}^T K \\mathbf{u} = \\frac{1}{2}\\sum_{\\text{elements}} k_e (\\Delta u_e)^2 \\geq 0`}</MathBlock>
+            <p className="mt-2">Energy is always nonnegative, so <Math>K</Math> is positive semidefinite.</p>
+            <p className="mt-2"><strong>Positive definite when constrained:</strong> Zero energy implies zero deformation. If rigid body motions (translations, rotations) are constrained, the only zero-energy state is <Math>\\mathbf{u} = \\mathbf{0}</Math>, so <Math>K</Math> becomes positive definite.</p>
+          </>
+        }
+      >
         <p>Physical stiffness matrices are:</p>
         <ul className="list-disc list-inside space-y-1">
           <li><strong>Symmetric:</strong> <Math>K = K^T</Math> (Maxwell-Betti reciprocity)</li>
@@ -61,7 +74,19 @@ export default function Section39() {
 
       <h2>Circuit Analysis</h2>
 
-      <Theorem title="Nodal Analysis" className="my-6">
+      <Theorem
+        title="Nodal Analysis"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Step 1:</strong> The incidence matrix <Math>A</Math> encodes the graph structure. For edge <Math>e</Math> from node <Math>j</Math> to node <Math>k</Math>: voltage difference = <Math>{`v_k - v_j = (A\\mathbf{v})_e`}</Math>.</p>
+            <p className="mt-2"><strong>Step 2 (Ohm's law):</strong> Current on edge <Math>e</Math> is <Math>{`i_e = c_e (A\\mathbf{v})_e`}</Math>. In matrix form: <Math>{`\\mathbf{i}_{\\text{edge}} = CA\\mathbf{v}`}</Math>.</p>
+            <p className="mt-2"><strong>Step 3 (Kirchhoff's current law):</strong> Current into each node sums to zero (plus external sources):</p>
+            <MathBlock>{`A^T \\mathbf{i}_{\\text{edge}} = A^T C A \\mathbf{v} = \\mathbf{i}_{\\text{ext}}`}</MathBlock>
+            <p className="mt-2">The matrix <Math>A^TCA</Math> is the weighted graph Laplacian.</p>
+          </>
+        }
+      >
         <p>
           For an electrical circuit, Kirchhoff's laws give:
         </p>

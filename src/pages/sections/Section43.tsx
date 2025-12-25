@@ -69,7 +69,20 @@ export default function Section43() {
         </p>
       </Definition>
 
-      <Theorem title="Properties of Rotation Matrices" className="my-6">
+      <Theorem
+        title="Properties of Rotation Matrices"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Orthogonal:</strong> Rotations preserve lengths and angles. In 2D, verify directly:</p>
+            <MathBlock>{`R_\\theta^T R_\\theta = \\begin{bmatrix} \\cos\\theta & \\sin\\theta \\\\ -\\sin\\theta & \\cos\\theta \\end{bmatrix} \\begin{bmatrix} \\cos\\theta & -\\sin\\theta \\\\ \\sin\\theta & \\cos\\theta \\end{bmatrix} = \\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix}`}</MathBlock>
+            <p className="mt-2">Using <Math>{`\\cos^2\\theta + \\sin^2\\theta = 1`}</Math>.</p>
+            <p className="mt-2"><strong>Determinant 1:</strong> <Math>{`\\det R_\\theta = \\cos^2\\theta + \\sin^2\\theta = 1`}</Math>.</p>
+            <p className="mt-2">The determinant being +1 (not -1) means orientation is preserved (no reflection).</p>
+            <p className="mt-2"><strong>Inverse = transpose:</strong> From <Math>{`R^TR = I`}</Math>, we have <Math>{`R^T = R^{-1}`}</Math>. Geometrically, rotating by <Math>{`-\\theta`}</Math> undoes rotation by <Math>{`\\theta`}</Math>, and <Math>{`R_{-\\theta} = R_\\theta^T`}</Math>.</p>
+          </>
+        }
+      >
         <ul className="list-disc list-inside space-y-1">
           <li><strong>Orthogonal:</strong> <Math>R^TR = I</Math></li>
           <li><strong>Determinant 1:</strong> <Math>\det R = 1</Math> (preserves orientation)</li>

@@ -79,7 +79,17 @@ export default function Section12() {
         </p>
       </Definition>
 
-      <Theorem title="Special Solutions from R" className="my-6">
+      <Theorem
+        title="Special Solutions from R"
+        className="my-6"
+        proof={
+          <>
+            <p>In the reduced row echelon form <Math>R</Math>, each pivot column contains exactly one 1 (the pivot) with zeros elsewhere. The remaining <Math>n - r</Math> columns are free columns.</p>
+            <p className="mt-2">To solve <Math>{`R\\mathbf{x} = \\mathbf{0}`}</Math>, we can assign any value to a free variable. Setting one free variable to 1 and all others to 0 forces specific values for the pivot variables (determined by the free column).</p>
+            <p className="mt-2">This gives <Math>n - r</Math> linearly independent special solutions—one for each free variable. Any solution to <Math>{`A\\mathbf{x} = \\mathbf{0}`}</Math> is a linear combination of these special solutions, so <Math>{`\\dim N(A) = n - r`}</Math>.</p>
+          </>
+        }
+      >
         <p>
           If <Math>R</Math> has <Math>r</Math> pivots in an <Math>m \times n</Math> matrix, there are <Math>n - r</Math> free
           variables and <Math>n - r</Math> special solutions in the nullspace.

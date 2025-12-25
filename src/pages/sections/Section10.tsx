@@ -36,7 +36,23 @@ export default function Section10() {
 
       <h2>Properties of Transpose</h2>
 
-      <Theorem title="Transpose Rules" className="my-6">
+      <Theorem
+        title="Transpose Rules"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Property 1:</strong> <Math>(A + B)^T = A^T + B^T</Math></p>
+            <p>Entry <Math>(i,j)</Math> of <Math>(A+B)^T</Math> is entry <Math>(j,i)</Math> of <Math>A+B</Math>, which equals <Math>{`a_{ji} + b_{ji} = (A^T)_{ij} + (B^T)_{ij}`}</Math>.</p>
+            <p className="mt-2"><strong>Property 2:</strong> <Math>(AB)^T = B^T A^T</Math></p>
+            <p>Entry <Math>(i,j)</Math> of <Math>(AB)^T</Math> is entry <Math>(j,i)</Math> of <Math>AB</Math>:</p>
+            <MathBlock>{`(AB)_{ji} = \\sum_k a_{jk}b_{ki} = \\sum_k (A^T)_{kj}(B^T)_{ik} = \\sum_k (B^T)_{ik}(A^T)_{kj} = (B^TA^T)_{ij}`}</MathBlock>
+            <p className="mt-2"><strong>Property 3:</strong> <Math>(A^T)^T = A</Math></p>
+            <p>Entry <Math>(i,j)</Math> of <Math>(A^T)^T</Math> is <Math>{`(A^T)_{ji} = a_{ij}`}</Math>, which is entry <Math>(i,j)</Math> of <Math>A</Math>.</p>
+            <p className="mt-2"><strong>Property 4:</strong> <Math>{`(A^{-1})^T = (A^T)^{-1}`}</Math></p>
+            <p>Taking transposes of <Math>{`A^{-1}A = I`}</Math>: <Math>{`(A^{-1}A)^T = I^T`}</Math>, so <Math>{`A^T(A^{-1})^T = I`}</Math>. This shows <Math>{`(A^{-1})^T`}</Math> is the inverse of <Math>A^T</Math>.</p>
+          </>
+        }
+      >
         <ul className="list-disc list-inside space-y-2">
           <li><Math>(A + B)^T = A^T + B^T</Math></li>
           <li><Math>(AB)^T = B^T A^T</Math> — the order reverses!</li>
@@ -59,7 +75,20 @@ export default function Section10() {
         </p>
       </Definition>
 
-      <Theorem title="Creating Symmetric Matrices" className="my-6">
+      <Theorem
+        title="Creating Symmetric Matrices"
+        className="my-6"
+        proof={
+          <>
+            <p>A matrix <Math>S</Math> is symmetric if <Math>S^T = S</Math>. We verify this for <Math>A^TA</Math>:</p>
+            <MathBlock>{`(A^TA)^T = A^T(A^T)^T = A^TA`}</MathBlock>
+            <p>The second equality uses <Math>(A^T)^T = A</Math>. Since <Math>(A^TA)^T = A^TA</Math>, the matrix is symmetric.</p>
+            <p className="mt-2">Similarly for <Math>AA^T</Math>:</p>
+            <MathBlock>{`(AA^T)^T = (A^T)^TA^T = AA^T`}</MathBlock>
+            <p>Both products are also square: if <Math>A</Math> is <Math>m \times n</Math>, then <Math>A^TA</Math> is <Math>n \times n</Math> and <Math>AA^T</Math> is <Math>m \times m</Math>.</p>
+          </>
+        }
+      >
         <p>
           For any matrix <Math>A</Math> (not necessarily square):
         </p>
@@ -92,7 +121,20 @@ export default function Section10() {
 
       <h2>Properties of Permutations</h2>
 
-      <Theorem title="Permutation Properties" className="my-6">
+      <Theorem
+        title="Permutation Properties"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Property 1:</strong> <Math>{`P^{-1} = P^T`}</Math></p>
+            <p>Let <Math>P</Math> have a 1 in position <Math>(i, j)</Math>. Then <Math>P^T</Math> has a 1 in position <Math>(j, i)</Math>.</p>
+            <p className="mt-2">The <Math>(i, i)</Math> entry of <Math>P^TP</Math> equals (row <Math>i</Math> of <Math>P^T</Math>) · (column <Math>i</Math> of <Math>P</Math>). Row <Math>i</Math> of <Math>P^T</Math> is column <Math>i</Math> of <Math>P</Math>, so this dot product counts how many 1's are in column <Math>i</Math> of <Math>P</Math> — exactly one. Thus diagonal entries of <Math>P^TP</Math> are 1.</p>
+            <p className="mt-2">For <Math>{`i \\neq k`}</Math>, the <Math>{`(i, k)`}</Math> entry of <Math>{`P^TP`}</Math> counts 1's shared between columns <Math>i</Math> and <Math>k</Math> of <Math>P</Math>. Since each row of <Math>P</Math> has exactly one 1, columns <Math>i</Math> and <Math>k</Math> have their 1's in different rows, giving 0.</p>
+            <p className="mt-2">Therefore <Math>{`P^TP = I`}</Math>, proving <Math>{`P^{-1} = P^T`}</Math>.</p>
+            <p className="mt-2"><strong>Property 3:</strong> Each permutation matrix corresponds to a permutation of <Math>{`\\{1, 2, \\ldots, n\\}`}</Math>. There are <Math>{`n!`}</Math> such permutations.</p>
+          </>
+        }
+      >
         <ul className="list-disc list-inside space-y-2">
           <li><Math>{`P^{-1} = P^T`}</Math> for any permutation matrix</li>
           <li><Math>P^TP = I</Math> (permutations are <strong>orthogonal</strong>)</li>

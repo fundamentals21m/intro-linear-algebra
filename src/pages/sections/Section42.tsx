@@ -27,7 +27,20 @@ export default function Section42() {
 
       <h2>Orthonormal Basis</h2>
 
-      <Theorem title="Fourier Basis" className="my-6">
+      <Theorem
+        title="Fourier Basis"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Orthogonality of cosines:</strong> For <Math>{`m \\neq n`}</Math>:</p>
+            <MathBlock>{`\\int_0^{2\\pi} \\cos(mx)\\cos(nx)\\,dx = \\frac{1}{2}\\int_0^{2\\pi} [\\cos((m-n)x) + \\cos((m+n)x)]\\,dx = 0`}</MathBlock>
+            <p className="mt-2">Each integral vanishes because we integrate complete periods of cosines.</p>
+            <p className="mt-2"><strong>Orthogonality of sines:</strong> Similarly, <Math>{`\\int_0^{2\\pi} \\sin(mx)\\sin(nx)\\,dx = 0`}</Math> for <Math>{`m \\neq n`}</Math>.</p>
+            <p className="mt-2"><strong>Cosine-sine orthogonality:</strong> <Math>{`\\int_0^{2\\pi} \\cos(mx)\\sin(nx)\\,dx = 0`}</Math> for all <Math>m, n</Math> (odd function over symmetric interval).</p>
+            <p className="mt-2"><strong>Normalization:</strong> <Math>{`\\int_0^{2\\pi} \\cos^2(nx)\\,dx = \\pi`}</Math> for <Math>{`n \\geq 1`}</Math>, hence the <Math>{`1/\\sqrt{\\pi}`}</Math> factors.</p>
+          </>
+        }
+      >
         <p>
           The functions form an orthonormal basis:
         </p>
@@ -68,7 +81,19 @@ export default function Section42() {
 
       <h2>Parseval's Theorem</h2>
 
-      <Theorem title="Parseval's Identity" className="my-6">
+      <Theorem
+        title="Parseval's Identity"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Expand the integral:</strong> Substitute the Fourier series for <Math>f(x)</Math>:</p>
+            <MathBlock>{`\\int_0^{2\\pi} |f(x)|^2\\,dx = \\int_0^{2\\pi} \\left(\\frac{a_0}{2} + \\sum_{n=1}^{\\infty} (a_n \\cos nx + b_n \\sin nx)\\right)^2 dx`}</MathBlock>
+            <p className="mt-2"><strong>Orthogonality:</strong> Cross terms vanish by orthogonality. Only squared terms survive:</p>
+            <MathBlock>{`= \\frac{a_0^2}{4} \\cdot 2\\pi + \\sum_{n=1}^{\\infty} (a_n^2 \\cdot \\pi + b_n^2 \\cdot \\pi)`}</MathBlock>
+            <p className="mt-2">Dividing by <Math>\\pi</Math> gives Parseval's identity. This is exactly <Math>\\|f\\|^2 = \\sum |\\langle f, e_n \\rangle|^2</Math> for an orthonormal basis.</p>
+          </>
+        }
+      >
         <p>
           Energy is preserved in the Fourier representation:
         </p>
@@ -82,7 +107,19 @@ export default function Section42() {
 
       <h2>Best Approximation</h2>
 
-      <Theorem title="Best L² Approximation" className="my-6">
+      <Theorem
+        title="Best L² Approximation"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Projection interpretation:</strong> <Math>S_N</Math> is the orthogonal projection of <Math>f</Math> onto the subspace spanned by <Math>{`\\{1, \\cos x, \\sin x, \\ldots, \\cos Nx, \\sin Nx\\}`}</Math>.</p>
+            <p className="mt-2">For any function <Math>g</Math> in this subspace, write <Math>{`g = S_N + (g - S_N)`}</Math>:</p>
+            <MathBlock>{`\\|f - g\\|^2 = \\|f - S_N + S_N - g\\|^2 = \\|f - S_N\\|^2 + \\|S_N - g\\|^2`}</MathBlock>
+            <p className="mt-2">The cross term vanishes because <Math>{`f - S_N`}</Math> is orthogonal to the subspace (projection property).</p>
+            <p className="mt-2">Since <Math>{`\\|S_N - g\\|^2 \\geq 0`}</Math>, we have <Math>{`\\|f - g\\| \\geq \\|f - S_N\\|`}</Math> with equality iff <Math>{`g = S_N`}</Math>.</p>
+          </>
+        }
+      >
         <p>
           The partial sum <Math>{`S_N(x) = \\frac{a_0}{2} + \\sum_{n=1}^{N} (a_n \\cos nx + b_n \\sin nx)`}</Math>
           is the <strong>best approximation</strong> to <Math>f</Math> using <Math>N</Math> harmonics:

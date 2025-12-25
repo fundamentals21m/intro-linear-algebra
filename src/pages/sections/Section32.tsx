@@ -29,7 +29,20 @@ export default function Section32() {
         </p>
       </Definition>
 
-      <Theorem title="Combined Linearity Property" className="my-6">
+      <Theorem
+        title="Combined Linearity Property"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>(⟹)</strong> Assume <Math>T</Math> is linear. Then:</p>
+            <MathBlock>{`T(c\\mathbf{v} + d\\mathbf{w}) = T(c\\mathbf{v}) + T(d\\mathbf{w}) = cT(\\mathbf{v}) + dT(\\mathbf{w})`}</MathBlock>
+            <p className="mt-2"><strong>(⟸)</strong> Assume the combined property holds.</p>
+            <p className="mt-2"><em>Additivity:</em> Set <Math>c = d = 1</Math>: <Math>{`T(\\mathbf{v} + \\mathbf{w}) = T(\\mathbf{v}) + T(\\mathbf{w})`}</Math>.</p>
+            <p className="mt-2"><em>Scalar multiplication:</em> Set <Math>d = 0</Math>: <Math>{`T(c\\mathbf{v}) = cT(\\mathbf{v})`}</Math>.</p>
+            <p className="mt-2">Both linearity conditions are satisfied.</p>
+          </>
+        }
+      >
         <p>
           Both conditions combine into a single test:
         </p>
@@ -87,7 +100,21 @@ export default function Section32() {
 
       <h2>Properties of Linear Transformations</h2>
 
-      <Theorem title="Zero and Linear Combinations" className="my-6">
+      <Theorem
+        title="Zero and Linear Combinations"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Zero maps to zero:</strong> Using <Math>{`T(c\\mathbf{v}) = cT(\\mathbf{v})`}</Math> with <Math>c = 0</Math>:</p>
+            <MathBlock>{`T(\\mathbf{0}) = T(0 \\cdot \\mathbf{v}) = 0 \\cdot T(\\mathbf{v}) = \\mathbf{0}`}</MathBlock>
+            <p className="mt-2"><strong>General linear combinations:</strong> By induction on <Math>n</Math>.</p>
+            <p className="mt-2"><em>Base case (n=2):</em> The combined linearity property.</p>
+            <p className="mt-2"><em>Inductive step:</em> Assume true for <Math>n-1</Math> terms. Then:</p>
+            <MathBlock>{`T(c_1\\mathbf{v}_1 + \\cdots + c_n\\mathbf{v}_n) = T(c_1\\mathbf{v}_1 + \\cdots + c_{n-1}\\mathbf{v}_{n-1}) + c_n T(\\mathbf{v}_n)`}</MathBlock>
+            <p className="mt-2">Apply the inductive hypothesis to the first term to complete the proof.</p>
+          </>
+        }
+      >
         <p>For any linear transformation <Math>T</Math>:</p>
         <ul className="list-disc list-inside space-y-2">
           <li><Math>{`T(\\mathbf{0}) = \\mathbf{0}`}</Math></li>
@@ -121,7 +148,20 @@ export default function Section32() {
         </p>
       </Definition>
 
-      <Theorem title="Rank-Nullity Theorem" className="my-6">
+      <Theorem
+        title="Rank-Nullity Theorem"
+        className="my-6"
+        proof={
+          <>
+            <p>Let <Math>{`\\{\\mathbf{u}_1, \\ldots, \\mathbf{u}_k\\}`}</Math> be a basis for <Math>\\ker T</Math>. Extend to a basis <Math>{`\\{\\mathbf{u}_1, \\ldots, \\mathbf{u}_k, \\mathbf{v}_1, \\ldots, \\mathbf{v}_m\\}`}</Math> for <Math>V</Math>.</p>
+            <p className="mt-2"><strong>Claim:</strong> <Math>{`\\{T(\\mathbf{v}_1), \\ldots, T(\\mathbf{v}_m)\\}`}</Math> is a basis for <Math>\\text{range } T</Math>.</p>
+            <p className="mt-2"><em>Spanning:</em> Any <Math>{`\\mathbf{w} \\in \\text{range } T`}</Math> is <Math>{`T(\\mathbf{x})`}</Math> for some <Math>{`\\mathbf{x} = \\sum a_i \\mathbf{u}_i + \\sum b_j \\mathbf{v}_j`}</Math>. Then:</p>
+            <MathBlock>{`\\mathbf{w} = T(\\mathbf{x}) = \\sum a_i T(\\mathbf{u}_i) + \\sum b_j T(\\mathbf{v}_j) = \\sum b_j T(\\mathbf{v}_j)`}</MathBlock>
+            <p className="mt-2"><em>Independence:</em> If <Math>{`\\sum c_j T(\\mathbf{v}_j) = \\mathbf{0}`}</Math>, then <Math>{`T(\\sum c_j \\mathbf{v}_j) = \\mathbf{0}`}</Math>, so <Math>{`\\sum c_j \\mathbf{v}_j \\in \\ker T`}</Math>. But this means <Math>{`\\sum c_j \\mathbf{v}_j = \\sum a_i \\mathbf{u}_i`}</Math>, contradicting basis independence unless all <Math>c_j = 0</Math>.</p>
+            <p className="mt-2">Thus <Math>\\dim V = k + m = \\dim(\\ker T) + \\dim(\\text{range } T)</Math>.</p>
+          </>
+        }
+      >
         <p>For <Math>T: V \to W</Math> with <Math>V</Math> finite-dimensional:</p>
         <MathBlock>
           {`\\dim(\\ker T) + \\dim(\\text{range } T) = \\dim V`}

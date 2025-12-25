@@ -13,7 +13,20 @@ export default function Section26() {
 
       <h2>The Spectral Theorem</h2>
 
-      <Theorem title="Spectral Theorem for Symmetric Matrices" className="my-6">
+      <Theorem
+        title="Spectral Theorem for Symmetric Matrices"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Real eigenvalues:</strong> If <Math>{`S\\mathbf{x} = \\lambda\\mathbf{x}`}</Math>, take complex conjugate transpose:</p>
+            <MathBlock>{`\\bar{\\mathbf{x}}^T S = \\bar{\\lambda} \\bar{\\mathbf{x}}^T`}</MathBlock>
+            <p>Multiply by <Math>{`\\mathbf{x}`}</Math>: <Math>{`\\bar{\\mathbf{x}}^T S\\mathbf{x} = \\bar{\\lambda}\\|\\mathbf{x}\\|^2`}</Math>.</p>
+            <p>Also <Math>{`\\bar{\\mathbf{x}}^T S\\mathbf{x} = \\bar{\\mathbf{x}}^T(\\lambda\\mathbf{x}) = \\lambda\\|\\mathbf{x}\\|^2`}</Math>.</p>
+            <p className="mt-2">So <Math>{`\\lambda = \\bar{\\lambda}`}</Math>, meaning <Math>{`\\lambda`}</Math> is real.</p>
+            <p className="mt-2"><strong>Orthonormal eigenvectors:</strong> For distinct eigenvalues, eigenvectors are orthogonal (next theorem). For repeated eigenvalues, we can choose an orthonormal basis within each eigenspace.</p>
+          </>
+        }
+      >
         <p>If <Math>S = S^T</Math> (symmetric), then:</p>
         <ol className="list-decimal list-inside mt-2 space-y-2">
           <li>All eigenvalues are <strong>real</strong></li>
@@ -60,7 +73,20 @@ export default function Section26() {
 
       <h2>Why Orthogonal Eigenvectors?</h2>
 
-      <Theorem title="Eigenvectors of Different Eigenvalues are Orthogonal" className="my-6">
+      <Theorem
+        title="Eigenvectors of Different Eigenvalues are Orthogonal"
+        className="my-6"
+        proof={
+          <>
+            <p>Consider <Math>{`\\mathbf{x}^T(S\\mathbf{y})`}</Math> computed two ways:</p>
+            <p className="mt-2"><strong>Way 1:</strong> <Math>{`\\mathbf{x}^T(S\\mathbf{y}) = \\mathbf{x}^T(\\lambda_2\\mathbf{y}) = \\lambda_2(\\mathbf{x}^T\\mathbf{y})`}</Math></p>
+            <p className="mt-2"><strong>Way 2:</strong> <Math>{`\\mathbf{x}^T(S\\mathbf{y}) = (\\mathbf{x}^TS)\\mathbf{y} = (S\\mathbf{x})^T\\mathbf{y} = (\\lambda_1\\mathbf{x})^T\\mathbf{y} = \\lambda_1(\\mathbf{x}^T\\mathbf{y})`}</Math></p>
+            <p className="mt-2">We used <Math>S^T = S</Math> in Way 2. Equating:</p>
+            <MathBlock>{`\\lambda_2(\\mathbf{x}^T\\mathbf{y}) = \\lambda_1(\\mathbf{x}^T\\mathbf{y})`}</MathBlock>
+            <p>Since <Math>\lambda_1 \neq \lambda_2</Math>, we must have <Math>{`\\mathbf{x}^T\\mathbf{y} = 0`}</Math>.</p>
+          </>
+        }
+      >
         <p>
           If <Math>{`S\\mathbf{x} = \\lambda_1\\mathbf{x}`}</Math> and <Math>{`S\\mathbf{y} = \\lambda_2\\mathbf{y}`}</Math>
           with <Math>\lambda_1 \neq \lambda_2</Math>, then <Math>{`\\mathbf{x}^T\\mathbf{y} = 0`}</Math>.
@@ -69,7 +95,18 @@ export default function Section26() {
 
       <h2>The Principal Axis Theorem</h2>
 
-      <Theorem title="Principal Axes" className="my-6">
+      <Theorem
+        title="Principal Axes"
+        className="my-6"
+        proof={
+          <>
+            <p>Substitute <Math>S = Q\Lambda Q^T</Math> and let <Math>{`\\mathbf{y} = Q^T\\mathbf{x}`}</Math> (so <Math>{`\\mathbf{x} = Q\\mathbf{y}`}</Math>):</p>
+            <MathBlock>{`\\mathbf{x}^TS\\mathbf{x} = \\mathbf{x}^T(Q\\Lambda Q^T)\\mathbf{x} = (Q^T\\mathbf{x})^T\\Lambda(Q^T\\mathbf{x}) = \\mathbf{y}^T\\Lambda\\mathbf{y}`}</MathBlock>
+            <p className="mt-2">Since <Math>\Lambda</Math> is diagonal:</p>
+            <MathBlock>{`\\mathbf{y}^T\\Lambda\\mathbf{y} = \\begin{bmatrix} y_1 & \\cdots & y_n \\end{bmatrix}\\begin{bmatrix} \\lambda_1 & & \\\\ & \\ddots & \\\\ & & \\lambda_n \\end{bmatrix}\\begin{bmatrix} y_1 \\\\ \\vdots \\\\ y_n \\end{bmatrix} = \\lambda_1 y_1^2 + \\cdots + \\lambda_n y_n^2`}</MathBlock>
+          </>
+        }
+      >
         <p>
           The quadratic form <Math>{`\\mathbf{x}^T S\\mathbf{x}`}</Math> becomes a sum of squares in the eigenvector basis:
         </p>
@@ -93,7 +130,18 @@ export default function Section26() {
 
       <h2>Eigenvalue Sign and Pivots</h2>
 
-      <Theorem title="Signs of Eigenvalues" className="my-6">
+      <Theorem
+        title="Signs of Eigenvalues"
+        className="my-6"
+        proof={
+          <>
+            <p>This is <strong>Sylvester's Law of Inertia</strong>. The key idea:</p>
+            <p className="mt-2">Elimination <Math>S \to LDL^T</Math> preserves the "signature" (numbers of +, −, 0). The diagonal of <Math>D</Math> contains the pivots.</p>
+            <p className="mt-2">Similarly, diagonalization <Math>S = Q\Lambda Q^T</Math> gives the eigenvalues on the diagonal.</p>
+            <p className="mt-2">Both <Math>D</Math> and <Math>\Lambda</Math> are related by congruence transformations that preserve signature. Therefore the counts of positive, negative, and zero entries must match.</p>
+          </>
+        }
+      >
         <p>For a symmetric matrix <Math>S</Math>:</p>
         <ul className="list-disc list-inside space-y-2">
           <li>Number of positive eigenvalues = number of positive pivots</li>

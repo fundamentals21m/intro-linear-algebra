@@ -13,7 +13,20 @@ export default function Section24() {
 
       <h2>The Diagonalization</h2>
 
-      <Theorem title="Diagonalization" className="my-6">
+      <Theorem
+        title="Diagonalization"
+        className="my-6"
+        proof={
+          <>
+            <p>Let <Math>X = [\mathbf{x}_1 \cdots \mathbf{x}_n]</Math> where <Math>{`A\\mathbf{x}_i = \\lambda_i\\mathbf{x}_i`}</Math>. Then:</p>
+            <MathBlock>{`AX = A[\\mathbf{x}_1 \\cdots \\mathbf{x}_n] = [\\lambda_1\\mathbf{x}_1 \\cdots \\lambda_n\\mathbf{x}_n]`}</MathBlock>
+            <p className="mt-2">The right side can be written as <Math>X\Lambda</Math>:</p>
+            <MathBlock>{`AX = X\\Lambda`}</MathBlock>
+            <p>If the eigenvectors are independent, <Math>X</Math> is invertible. Multiply by <Math>X^{-1}</Math>:</p>
+            <MathBlock>{`A = X\\Lambda X^{-1} \\quad \\text{or} \\quad \\Lambda = X^{-1}AX`}</MathBlock>
+          </>
+        }
+      >
         <p>
           If <Math>A</Math> has <Math>n</Math> linearly independent eigenvectors, put them in the columns of <Math>X</Math>:
         </p>
@@ -43,7 +56,20 @@ export default function Section24() {
 
       <h2>Powers of A</h2>
 
-      <Theorem title="Computing A^k" className="my-6">
+      <Theorem
+        title="Computing A^k"
+        className="my-6"
+        proof={
+          <>
+            <p>Using <Math>{`A = X\\Lambda X^{-1}`}</Math>:</p>
+            <MathBlock>{`A^2 = (X\\Lambda X^{-1})(X\\Lambda X^{-1}) = X\\Lambda(X^{-1}X)\\Lambda X^{-1} = X\\Lambda^2 X^{-1}`}</MathBlock>
+            <p className="mt-2">By induction:</p>
+            <MathBlock>{`A^k = X\\Lambda^k X^{-1}`}</MathBlock>
+            <p className="mt-2">Since <Math>\Lambda</Math> is diagonal, <Math>\Lambda^k</Math> is also diagonal with entries <Math>\lambda_i^k</Math>:</p>
+            <MathBlock>{`\\Lambda^k = \\begin{bmatrix} \\lambda_1^k & & 0 \\\\ & \\ddots & \\\\ 0 & & \\lambda_n^k \\end{bmatrix}`}</MathBlock>
+          </>
+        }
+      >
         <p>
           The key benefit of diagonalization: powers become easy!
         </p>
@@ -66,7 +92,19 @@ export default function Section24() {
 
       <h2>When Is A Diagonalizable?</h2>
 
-      <Theorem title="Diagonalizability" className="my-6">
+      <Theorem
+        title="Diagonalizability"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Distinct eigenvalues ⟹ diagonalizable:</strong></p>
+            <p className="mt-2">We prove eigenvectors of distinct eigenvalues are independent. Suppose <Math>{`c_1\\mathbf{x}_1 + \\cdots + c_k\\mathbf{x}_k = \\mathbf{0}`}</Math> where each <Math>\lambda_i</Math> is distinct.</p>
+            <p className="mt-2">Apply <Math>A</Math>: <Math>{`c_1\\lambda_1\\mathbf{x}_1 + \\cdots + c_k\\lambda_k\\mathbf{x}_k = \\mathbf{0}`}</Math>.</p>
+            <p className="mt-2">Subtract <Math>\lambda_k</Math> times the first equation: <Math>{`c_1(\\lambda_1 - \\lambda_k)\\mathbf{x}_1 + \\cdots = \\mathbf{0}`}</Math>.</p>
+            <p className="mt-2">Since <Math>\lambda_1 - \lambda_k \neq 0</Math>, we can continue this process to show all <Math>c_i = 0</Math>. Thus eigenvectors are independent.</p>
+          </>
+        }
+      >
         <p><Math>A</Math> is diagonalizable if and only if it has <Math>n</Math> independent eigenvectors.</p>
         <p className="mt-2">This is <strong>guaranteed</strong> when:</p>
         <ul className="list-disc list-inside mt-2 space-y-1">
@@ -95,7 +133,19 @@ export default function Section24() {
         </p>
       </Definition>
 
-      <Theorem title="Properties of Similar Matrices" className="my-6">
+      <Theorem
+        title="Properties of Similar Matrices"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Same eigenvalues:</strong> If <Math>{`B = M^{-1}AM`}</Math> and <Math>{`A\\mathbf{x} = \\lambda\\mathbf{x}`}</Math>, then:</p>
+            <MathBlock>{`B(M^{-1}\\mathbf{x}) = M^{-1}AM(M^{-1}\\mathbf{x}) = M^{-1}A\\mathbf{x} = M^{-1}(\\lambda\\mathbf{x}) = \\lambda(M^{-1}\\mathbf{x})`}</MathBlock>
+            <p>So <Math>{`M^{-1}\\mathbf{x}`}</Math> is an eigenvector of <Math>B</Math> with the same eigenvalue <Math>\lambda</Math>.</p>
+            <p className="mt-2"><strong>Same determinant:</strong> <Math>\det B = \det(M^{-1}AM) = \det(M^{-1})\det(A)\det(M) = \det A</Math>.</p>
+            <p className="mt-2"><strong>Same trace and rank:</strong> Follow from same eigenvalues (trace = sum, rank = number of nonzero eigenvalues).</p>
+          </>
+        }
+      >
         <p>If <Math>A</Math> and <Math>B</Math> are similar:</p>
         <ul className="list-disc list-inside space-y-1">
           <li>Same eigenvalues</li>

@@ -45,7 +45,20 @@ export default function Section30() {
 
       <h2>Principal Components</h2>
 
-      <Theorem title="Principal Component Analysis" className="my-6">
+      <Theorem
+        title="Principal Component Analysis"
+        className="my-6"
+        proof={
+          <>
+            <p>The variance of centered data projected onto unit vector <Math>q</Math> is:</p>
+            <MathBlock>{`\\text{Var}_q = \\frac{1}{n-1}\\sum_{i=1}^n (q^T a_i)^2 = \\frac{1}{n-1}q^T A A^T q = q^T S q`}</MathBlock>
+            <p className="mt-2">To maximize variance subject to <Math>\\|q\\| = 1</Math>, use Lagrange multipliers:</p>
+            <MathBlock>{`\\nabla(q^T S q - \\lambda(q^T q - 1)) = 0 \\implies 2Sq = 2\\lambda q`}</MathBlock>
+            <p className="mt-2">So the maximum variance is achieved at eigenvectors of <Math>S</Math>. The eigenvalue <Math>\\lambda</Math> equals the variance: <Math>q^T S q = q^T (\\lambda q) = \\lambda</Math>.</p>
+            <p className="mt-2">The largest eigenvalue <Math>\\lambda_1</Math> gives maximum variance with eigenvector <Math>q_1</Math>. The second PC <Math>q_2</Math> is orthogonal to <Math>q_1</Math> (since eigenvectors of symmetric matrices are orthogonal) and maximizes variance in the orthogonal complement.</p>
+          </>
+        }
+      >
         <p>
           The <strong>principal components</strong> are the eigenvectors of the covariance matrix <Math>S</Math>:
         </p>
@@ -72,7 +85,20 @@ export default function Section30() {
 
       <h2>PCA via SVD</h2>
 
-      <Theorem title="PCA from the SVD" className="my-6">
+      <Theorem
+        title="PCA from the SVD"
+        className="my-6"
+        proof={
+          <>
+            <p>Given <Math>{`A = U\\Sigma V^T`}</Math>, the covariance matrix is:</p>
+            <MathBlock>{`S = \\frac{1}{n-1}AA^T = \\frac{1}{n-1}U\\Sigma V^T V \\Sigma^T U^T = \\frac{1}{n-1}U(\\Sigma\\Sigma^T)U^T`}</MathBlock>
+            <p className="mt-2">This is a spectral decomposition: columns of <Math>U</Math> are eigenvectors of <Math>S</Math>, with eigenvalues <Math>{`\\lambda_i = \\sigma_i^2/(n-1)`}</Math>.</p>
+            <p className="mt-2">For the projected coordinates, if we project data point <Math>a_i</Math> onto PC <Math>u_j</Math>:</p>
+            <MathBlock>{`\\text{score}_{ij} = u_j^T a_i`}</MathBlock>
+            <p className="mt-2">In matrix form: <Math>{`U^T A = U^T U \\Sigma V^T = \\Sigma V^T`}</Math>. So the matrix of scores is <Math>{`\\Sigma V^T`}</Math>.</p>
+          </>
+        }
+      >
         <p>
           If <Math>A = U\Sigma V^T</Math> is the SVD of the centered data matrix:
         </p>
@@ -101,7 +127,22 @@ export default function Section30() {
         </p>
       </Definition>
 
-      <Theorem title="Optimal Low-Rank Approximation" className="my-6">
+      <Theorem
+        title="Optimal Low-Rank Approximation"
+        className="my-6"
+        proof={
+          <>
+            <p>The total variance equals the sum of all eigenvalues:</p>
+            <MathBlock>{`\\text{Total variance} = \\text{tr}(S) = \\lambda_1 + \\cdots + \\lambda_m`}</MathBlock>
+            <p className="mt-2">When we project onto the first <Math>k</Math> PCs, the reconstruction is:</p>
+            <MathBlock>{`\\hat{A} = Q_k Q_k^T A`}</MathBlock>
+            <p className="mt-2">By the Eckart-Young theorem, this minimizes <Math>\\|A - \\hat{A}\\|_F^2</Math>.</p>
+            <p className="mt-2">The variance captured by the first <Math>k</Math> components is <Math>{`\\lambda_1 + \\cdots + \\lambda_k`}</Math>. The reconstruction error in variance is <Math>{`\\lambda_{k+1} + \\cdots + \\lambda_m`}</Math>.</p>
+            <p className="mt-2">Thus the fraction of variance retained is:</p>
+            <MathBlock>{`\\frac{\\lambda_1 + \\cdots + \\lambda_k}{\\lambda_1 + \\cdots + \\lambda_m} = \\frac{\\sigma_1^2 + \\cdots + \\sigma_k^2}{\\sigma_1^2 + \\cdots + \\sigma_m^2}`}</MathBlock>
+          </>
+        }
+      >
         <p>
           The first <Math>k</Math> principal components give the best <Math>k</Math>-dimensional
           representation of the data (in the least-squares sense).

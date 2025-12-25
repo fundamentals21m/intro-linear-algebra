@@ -30,7 +30,19 @@ export default function Section49() {
 
       <h2>Least Squares Solution</h2>
 
-      <Theorem title="Normal Equations" className="my-6">
+      <Theorem
+        title="Normal Equations"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Minimize squared error:</strong> Let <Math>{`f(\\boldsymbol{\\beta}) = \\|\\mathbf{y} - X\\boldsymbol{\\beta}\\|^2 = (\\mathbf{y} - X\\boldsymbol{\\beta})^T(\\mathbf{y} - X\\boldsymbol{\\beta})`}</Math>.</p>
+            <p className="mt-2"><strong>Expand:</strong> <Math>{`f = \\mathbf{y}^T\\mathbf{y} - 2\\boldsymbol{\\beta}^T X^T \\mathbf{y} + \\boldsymbol{\\beta}^T X^T X \\boldsymbol{\\beta}`}</Math>.</p>
+            <p className="mt-2"><strong>Take derivative:</strong> <Math>{`\\frac{\\partial f}{\\partial \\boldsymbol{\\beta}} = -2X^T\\mathbf{y} + 2X^TX\\boldsymbol{\\beta} = 0`}</Math>.</p>
+            <p className="mt-2"><strong>Solve:</strong> <Math>{`X^TX\\hat{\\boldsymbol{\\beta}} = X^T\\mathbf{y}`}</Math>, giving <Math>{`\\hat{\\boldsymbol{\\beta}} = (X^TX)^{-1}X^T\\mathbf{y}`}</Math>.</p>
+            <p className="mt-2"><strong>Projection view:</strong> The error <Math>{`\\mathbf{e} = \\mathbf{y} - X\\hat{\\boldsymbol{\\beta}}`}</Math> satisfies <Math>{`X^T\\mathbf{e} = 0`}</Math>, meaning <Math>{`\\mathbf{e}`}</Math> is orthogonal to <Math>C(X)</Math>.</p>
+          </>
+        }
+      >
         <p>
           The <strong>least squares estimate</strong> <Math>{`\\hat{\\boldsymbol{\\beta}}`}</Math> minimizes <Math>{`\\|y - X\\boldsymbol{\\beta}\\|^2`}</Math>:
         </p>
@@ -59,7 +71,18 @@ export default function Section49() {
 
       <h2>Geometric Interpretation</h2>
 
-      <Theorem title="Projection Interpretation" className="my-6">
+      <Theorem
+        title="Projection Interpretation"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Hat matrix:</strong> <Math>H = X(X^TX)^{-1}X^T</Math> satisfies <Math>H^2 = H</Math> (idempotent) and <Math>H^T = H</Math> (symmetric).</p>
+            <p className="mt-2">These are the defining properties of an orthogonal projection matrix.</p>
+            <p className="mt-2"><strong>Projects onto C(X):</strong> For any <Math>\\mathbf{v} \\in C(X)</Math>, write <Math>\\mathbf{v} = X\\mathbf{c}</Math>. Then <Math>H\\mathbf{v} = X(X^TX)^{-1}X^TX\\mathbf{c} = X\\mathbf{c} = \\mathbf{v}</Math>.</p>
+            <p className="mt-2"><strong>Orthogonal residuals:</strong> <Math>\\mathbf{e} = (I-H)\\mathbf{y}</Math>. Since <Math>(I-H)H = 0</Math>, the residual is orthogonal to the fitted values and hence to <Math>C(X)</Math>.</p>
+          </>
+        }
+      >
         <ul className="list-disc list-inside space-y-2">
           <li><Math>{`\\hat{y} = X(X^TX)^{-1}X^Ty`}</Math> = projection of <Math>y</Math> onto column space of <Math>X</Math></li>
           <li><Math>{`H = X(X^TX)^{-1}X^T`}</Math> = "hat matrix" (projection matrix)</li>
@@ -69,7 +92,19 @@ export default function Section49() {
 
       <h2>Variance of Estimates</h2>
 
-      <Theorem title="Covariance of Beta-Hat" className="my-6">
+      <Theorem
+        title="Covariance of Beta-Hat"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Setup:</strong> <Math>{`\\hat{\\boldsymbol{\\beta}} = (X^TX)^{-1}X^T\\mathbf{y} = (X^TX)^{-1}X^T(X\\boldsymbol{\\beta} + \\boldsymbol{\\varepsilon}) = \\boldsymbol{\\beta} + (X^TX)^{-1}X^T\\boldsymbol{\\varepsilon}`}</Math>.</p>
+            <p className="mt-2"><strong>Apply covariance transformation:</strong> Since <Math>{`\\hat{\\boldsymbol{\\beta}} - \\boldsymbol{\\beta} = (X^TX)^{-1}X^T\\boldsymbol{\\varepsilon}`}</Math>:</p>
+            <MathBlock>{`\\text{Cov}(\\hat{\\boldsymbol{\\beta}}) = (X^TX)^{-1}X^T \\cdot \\text{Cov}(\\boldsymbol{\\varepsilon}) \\cdot X(X^TX)^{-1}`}</MathBlock>
+            <p className="mt-2">With <Math>{`\\text{Cov}(\\boldsymbol{\\varepsilon}) = \\sigma^2 I`}</Math>:</p>
+            <MathBlock>{`= \\sigma^2 (X^TX)^{-1}X^TX(X^TX)^{-1} = \\sigma^2(X^TX)^{-1}`}</MathBlock>
+          </>
+        }
+      >
         <p>
           If <Math>{`\\text{Cov}(\\boldsymbol{\\\\varepsilon}) = \\sigma^2 I`}</Math>:
         </p>

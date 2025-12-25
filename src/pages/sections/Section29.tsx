@@ -13,7 +13,20 @@ export default function Section29() {
 
       <h2>The SVD Factorization</h2>
 
-      <Theorem title="The Singular Value Decomposition" className="my-6">
+      <Theorem
+        title="The Singular Value Decomposition"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Existence:</strong> The matrix <Math>{`A^TA`}</Math> is symmetric positive semidefinite, so it has an orthonormal eigenbasis <Math>{`v_1, \\ldots, v_n`}</Math> with eigenvalues <Math>{`\\lambda_1 \\geq \\cdots \\geq \\lambda_n \\geq 0`}</Math>.</p>
+            <p className="mt-2">Define <Math>{`\\sigma_i = \\sqrt{\\lambda_i}`}</Math>. For <Math>{`i \\leq r`}</Math> (where <Math>{`\\sigma_i > 0`}</Math>), set <Math>{`u_i = Av_i/\\sigma_i`}</Math>.</p>
+            <p className="mt-2"><strong>Orthonormality of <Math>{`u_i`}</Math>:</strong> For <Math>{`i, j \\leq r`}</Math>:</p>
+            <MathBlock>{`u_i^T u_j = \\frac{v_i^T A^T A v_j}{\\sigma_i \\sigma_j} = \\frac{\\lambda_j \\delta_{ij}}{\\sigma_i \\sigma_j} = \\delta_{ij}`}</MathBlock>
+            <p className="mt-2">Extend <Math>{`\\{u_1, \\ldots, u_r\\}`}</Math> to an orthonormal basis <Math>{`\\{u_1, \\ldots, u_m\\}`}</Math> of <Math>{`\\mathbb{R}^m`}</Math>.</p>
+            <p className="mt-2"><strong>Verification:</strong> <Math>{`Av_i = \\sigma_i u_i`}</Math> by construction, so <Math>{`AV = U\\Sigma`}</Math>, giving <Math>{`A = U\\Sigma V^T`}</Math>.</p>
+          </>
+        }
+      >
         <p>
           Every <Math>m \times n</Math> matrix <Math>A</Math> of rank <Math>r</Math> has the factorization:
         </p>
@@ -58,7 +71,21 @@ export default function Section29() {
 
       <h2>Relationship to Eigenvalues</h2>
 
-      <Theorem title="SVD and Eigenvalues" className="my-6">
+      <Theorem
+        title="SVD and Eigenvalues"
+        className="my-6"
+        proof={
+          <>
+            <p>Starting from <Math>{`A = U\\Sigma V^T`}</Math>:</p>
+            <MathBlock>{`A^TA = (V\\Sigma^T U^T)(U\\Sigma V^T) = V(\\Sigma^T\\Sigma)V^T`}</MathBlock>
+            <p className="mt-2">This is a spectral decomposition of <Math>A^TA</Math> with eigenvectors <Math>v_i</Math> (columns of <Math>V</Math>) and eigenvalues <Math>\\sigma_i^2</Math> (diagonal entries of <Math>\\Sigma^T\\Sigma</Math>).</p>
+            <p className="mt-2">Similarly:</p>
+            <MathBlock>{`AA^T = (U\\Sigma V^T)(V\\Sigma^T U^T) = U(\\Sigma\\Sigma^T)U^T`}</MathBlock>
+            <p className="mt-2">So <Math>u_i</Math> (columns of <Math>U</Math>) are eigenvectors of <Math>AA^T</Math> with eigenvalues <Math>\\sigma_i^2</Math>.</p>
+            <p className="mt-2">The nonzero eigenvalues of <Math>A^TA</Math> and <Math>AA^T</Math> are identical (both equal <Math>\\sigma_1^2, \\ldots, \\sigma_r^2</Math>).</p>
+          </>
+        }
+      >
         <p>The SVD is connected to eigenvalue problems:</p>
         <MathBlock>
           {`A^TA = V\\Sigma^T\\Sigma V^T \\quad \\text{(eigenvalues } \\sigma_i^2\\text{)}`}
@@ -75,7 +102,18 @@ export default function Section29() {
 
       <h2>The Four Fundamental Subspaces</h2>
 
-      <Theorem title="SVD and Subspaces" className="my-6">
+      <Theorem
+        title="SVD and Subspaces"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Column space:</strong> <Math>{`A = \\sum_{i=1}^r \\sigma_i u_i v_i^T`}</Math>, so every column of <Math>{`A`}</Math> is a combination of <Math>{`u_1, \\ldots, u_r`}</Math>. Thus <Math>{`C(A) = \\text{span}(u_1, \\ldots, u_r)`}</Math>.</p>
+            <p className="mt-2"><strong>Row space:</strong> <Math>{`A^T = \\sum_{i=1}^r \\sigma_i v_i u_i^T`}</Math>, so <Math>{`C(A^T) = \\text{span}(v_1, \\ldots, v_r)`}</Math>.</p>
+            <p className="mt-2"><strong>Nullspace:</strong> For <Math>{`j > r`}</Math>, <Math>{`Av_j = U\\Sigma V^T v_j = U\\Sigma e_j = 0`}</Math> since column <Math>{`j`}</Math> of <Math>{`\\Sigma`}</Math> is zero. Thus <Math>{`v_{r+1}, \\ldots, v_n`}</Math> span <Math>{`N(A)`}</Math>.</p>
+            <p className="mt-2"><strong>Left nullspace:</strong> Similarly, <Math>{`A^Tu_j = 0`}</Math> for <Math>{`j > r`}</Math>, so <Math>{`u_{r+1}, \\ldots, u_m`}</Math> span <Math>{`N(A^T)`}</Math>.</p>
+          </>
+        }
+      >
         <p>The SVD reveals the four fundamental subspaces:</p>
         <ul className="list-disc list-inside space-y-2">
           <li><strong>Column space</strong> <Math>C(A)</Math>: first <Math>r</Math> columns of <Math>U</Math></li>
@@ -96,7 +134,20 @@ export default function Section29() {
 
       <h2>The Matrix as a Linear Map</h2>
 
-      <Theorem title="What A Does" className="my-6">
+      <Theorem
+        title="What A Does"
+        className="my-6"
+        proof={
+          <>
+            <p>From <Math>{`A = U\\Sigma V^T`}</Math> and <Math>{`V^Tv_i = e_i`}</Math>:</p>
+            <MathBlock>{`Av_i = U\\Sigma V^T v_i = U\\Sigma e_i = U(\\sigma_i e_i) = \\sigma_i u_i`}</MathBlock>
+            <p className="mt-2">for <Math>{`i \\leq r`}</Math> where <Math>{`\\sigma_i > 0`}</Math>.</p>
+            <p className="mt-2">For <Math>{`i > r`}</Math>, the <Math>{`i`}</Math>-th column of <Math>{`\\Sigma`}</Math> is zero:</p>
+            <MathBlock>{`Av_i = U\\Sigma e_i = U \\cdot 0 = 0`}</MathBlock>
+            <p className="mt-2">This shows geometrically: <Math>{`A`}</Math> takes the orthonormal basis <Math>{`\\{v_i\\}`}</Math> and maps the first <Math>{`r`}</Math> vectors to <Math>{`\\sigma_i u_i`}</Math> (stretched and rotated), while the rest are sent to zero.</p>
+          </>
+        }
+      >
         <p>The SVD shows exactly what <Math>A</Math> does:</p>
         <MathBlock>
           {`Av_i = \\sigma_i u_i \\quad \\text{for } i = 1, \\ldots, r`}

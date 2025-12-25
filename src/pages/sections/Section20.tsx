@@ -27,7 +27,19 @@ export default function Section20() {
 
       <h2>Consequences of the Three Properties</h2>
 
-      <Theorem title="Properties 4-10" className="my-6">
+      <Theorem
+        title="Properties 4-10"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Property 4:</strong> Exchange the two equal rows. By property 2, the sign changes. But the matrix is unchanged! So <Math>\det A = -\det A</Math>, giving <Math>\det A = 0</Math>.</p>
+            <p className="mt-2"><strong>Property 5:</strong> By property 3, <Math>\det[\text{row}_i - c \cdot \text{row}_j] = \det[\text{row}_i] - c \cdot \det[\text{row}_j]</Math>. The second determinant has two equal rows (row <Math>j</Math> appears twice), so by property 4 it's zero.</p>
+            <p className="mt-2"><strong>Property 6:</strong> By property 3 with scalar 0: <Math>\det[0 \cdot \text{row}_i] = 0 \cdot \det[\text{row}_i] = 0</Math>.</p>
+            <p className="mt-2"><strong>Property 7:</strong> Elimination (which doesn't change det by property 5) produces <Math>I</Math> for a triangular matrix with all 1's on diagonal. The product of pivots formula follows.</p>
+            <p className="mt-2"><strong>Property 8:</strong> A singular matrix has a zero row in <Math>U</Math>, giving <Math>\det A = 0</Math>.</p>
+          </>
+        }
+      >
         <p>From the three defining properties, we can prove:</p>
         <ul className="list-disc list-inside mt-2 space-y-2">
           <li><strong>4.</strong> If two rows are equal, then <Math>\det A = 0</Math></li>
@@ -51,7 +63,19 @@ export default function Section20() {
 
       <h2>Computing Determinants by Elimination</h2>
 
-      <Theorem title="Determinant from Pivots" className="my-6">
+      <Theorem
+        title="Determinant from Pivots"
+        className="my-6"
+        proof={
+          <>
+            <p>Elimination uses two types of operations:</p>
+            <p className="mt-2">• <strong>Row subtraction:</strong> By property 5, <Math>\det</Math> is unchanged.</p>
+            <p className="mt-2">• <strong>Row exchange:</strong> By property 2, <Math>\det</Math> changes sign.</p>
+            <p className="mt-2">After elimination, <Math>U</Math> is upper triangular. By property 7, <Math>\det U</Math> = product of pivots.</p>
+            <p className="mt-2">The sign depends on the parity of row exchanges: <Math>{`\\det A = (-1)^{\\text{exchanges}} \\det U`}</Math>.</p>
+          </>
+        }
+      >
         <p>
           If elimination (with row exchanges) takes <Math>A</Math> to <Math>U</Math>:
         </p>
@@ -75,7 +99,18 @@ export default function Section20() {
 
       <h2>The Product Rule</h2>
 
-      <Theorem title="det(AB) = det(A) det(B)" className="my-6">
+      <Theorem
+        title="det(AB) = det(A) det(B)"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Case 1:</strong> If <Math>A</Math> is singular, then <Math>AB</Math> is singular (its columns are combinations of <Math>A</Math>'s columns). Both sides equal 0.</p>
+            <p className="mt-2"><strong>Case 2:</strong> If <Math>A</Math> is invertible, factor <Math>A = E_1 E_2 \cdots E_k</Math> into elementary matrices. Each <Math>E_i</Math> is a row operation, and we know how each affects the determinant.</p>
+            <p className="mt-2">Then <Math>\det(AB) = \det(E_1 \cdots E_k B) = \det(E_1) \cdots \det(E_k) \det(B) = \det(A) \det(B)</Math>.</p>
+            <p className="mt-2"><strong>Consequence:</strong> <Math>\det(A A^{-1}) = \det I = 1</Math>, so <Math>\det(A) \det(A^{-1}) = 1</Math>.</p>
+          </>
+        }
+      >
         <p>
           The determinant of a product equals the product of determinants:
         </p>

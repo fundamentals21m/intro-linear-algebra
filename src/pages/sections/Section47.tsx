@@ -36,7 +36,18 @@ export default function Section47() {
         </ul>
       </Example>
 
-      <Theorem title="Inverse Iteration" className="my-6">
+      <Theorem
+        title="Inverse Iteration"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Key insight:</strong> If <Math>{`A\\mathbf{v} = \\lambda \\mathbf{v}`}</Math>, then <Math>{`(A - \\mu I)\\mathbf{v} = (\\lambda - \\mu)\\mathbf{v}`}</Math>.</p>
+            <p className="mt-2">Thus <Math>{`(A - \\mu I)^{-1}\\mathbf{v} = \\frac{1}{\\lambda - \\mu}\\mathbf{v}`}</Math>.</p>
+            <p className="mt-2"><strong>Amplification:</strong> The eigenvalue of <Math>{`(A - \\mu I)^{-1}`}</Math> is <Math>{`1/(\\lambda - \\mu)`}</Math>. The eigenvalue closest to <Math>{`\\mu`}</Math> has the smallest <Math>{`|\\lambda - \\mu|`}</Math>, hence the largest <Math>{`|1/(\\lambda - \\mu)|`}</Math>.</p>
+            <p className="mt-2"><strong>Convergence:</strong> Power iteration on <Math>{`(A - \\mu I)^{-1}`}</Math> converges to the eigenvector for the dominant eigenvalue of <Math>{`(A - \\mu I)^{-1}`}</Math>, which is the eigenvector for the eigenvalue of <Math>A</Math> nearest to <Math>{`\\mu`}</Math>.</p>
+          </>
+        }
+      >
         <p>
           To find the eigenvalue nearest to <Math>\mu</Math>:
         </p>
@@ -66,7 +77,19 @@ export default function Section47() {
         </p>
       </Definition>
 
-      <Theorem title="Convergence of QR" className="my-6">
+      <Theorem
+        title="Convergence of QR"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Similarity:</strong> <Math>A_{k+1} = R_k Q_k = Q_k^{-1} Q_k R_k Q_k = Q_k^{-1} A_k Q_k</Math>.</p>
+            <p className="mt-2">Thus <Math>A_{k+1}</Math> is similar to <Math>A_k</Math>, so all <Math>A_k</Math> share the same eigenvalues.</p>
+            <p className="mt-2"><strong>Connection to power iteration:</strong> <Math>A^k = (Q_1 R_1)(Q_2 R_2)\\cdots = (Q_1 Q_2 \\cdots Q_k)(R_k \\cdots R_1)</Math>.</p>
+            <p className="mt-2">The <Math>Q</Math>-factors span the same subspaces as power iteration. This causes the subdiagonal entries to decay like <Math>|\\lambda_{i+1}/\\lambda_i|^k</Math>.</p>
+            <p className="mt-2"><strong>Result:</strong> <Math>A_k</Math> converges to upper triangular (or block upper triangular if eigenvalues have equal modulus) with eigenvalues on the diagonal.</p>
+          </>
+        }
+      >
         <ul className="list-disc list-inside space-y-2">
           <li>All <Math>A_k</Math> are similar (same eigenvalues)</li>
           <li>For distinct <Math>|\lambda_i|</Math>, converges to upper triangular</li>
@@ -91,7 +114,18 @@ export default function Section47() {
 
       <h2>SVD Computation</h2>
 
-      <Theorem title="Computing the SVD" className="my-6">
+      <Theorem
+        title="Computing the SVD"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Step 1 - Bidiagonalization:</strong> Use Householder reflections alternating on left and right to reduce <Math>A</Math> to bidiagonal form <Math>B = U_1^T A V_1</Math>. Cost: <Math>O(mn^2)</Math>.</p>
+            <p className="mt-2"><strong>Step 2 - SVD of bidiagonal:</strong> Apply implicit QR with shifts to <Math>B^TB</Math> (without forming it explicitly). This zeroes out the superdiagonal entries.</p>
+            <p className="mt-2"><strong>Step 3 - Accumulate:</strong> Track the transformations: <Math>U = U_1 U_2</Math>, <Math>V = V_1 V_2</Math> where <Math>U_2, V_2</Math> come from the QR iterations.</p>
+            <p className="mt-2"><strong>Result:</strong> <Math>A = U\\Sigma V^T</Math> where <Math>\\Sigma</Math> is diagonal with singular values (square roots of eigenvalues of <Math>A^TA</Math>).</p>
+          </>
+        }
+      >
         <p>
           To compute <Math>A = U\Sigma V^T</Math>:
         </p>

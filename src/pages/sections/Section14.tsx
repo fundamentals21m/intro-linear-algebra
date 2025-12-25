@@ -25,7 +25,18 @@ export default function Section14() {
         </p>
       </Definition>
 
-      <Theorem title="Independence and Nullspace" className="my-6">
+      <Theorem
+        title="Independence and Nullspace"
+        className="my-6"
+        proof={
+          <>
+            <p>Let the columns of <Math>A</Math> be <Math>{`\\mathbf{a}_1, \\ldots, \\mathbf{a}_n`}</Math>. The equation <Math>{`A\\mathbf{x} = \\mathbf{0}`}</Math> is:</p>
+            <MathBlock>{`x_1\\mathbf{a}_1 + x_2\\mathbf{a}_2 + \\cdots + x_n\\mathbf{a}_n = \\mathbf{0}`}</MathBlock>
+            <p className="mt-2"><strong>(⟹)</strong> If the columns are independent, then the only way this linear combination can equal zero is with all <Math>x_i = 0</Math>. So <Math>{`N(A) = \\{\\mathbf{0}\\}`}</Math>.</p>
+            <p className="mt-2"><strong>(⟸)</strong> If <Math>{`N(A) = \\{\\mathbf{0}\\}`}</Math>, then the only solution is <Math>{`\\mathbf{x} = \\mathbf{0}`}</Math>, meaning the only linear combination giving zero has all coefficients zero. This is the definition of independence.</p>
+          </>
+        }
+      >
         <p>
           The columns of <Math>A</Math> are linearly independent if and only if <Math>{`N(A) = \\mathbf{Z}`}</Math>
           (only <Math>{`\\mathbf{x} = \\mathbf{0}`}</Math> solves <Math>{`A\\mathbf{x} = \\mathbf{0}`}</Math>).
@@ -83,7 +94,18 @@ export default function Section14() {
 
       <h2>Dimension</h2>
 
-      <Theorem title="Dimension" className="my-6">
+      <Theorem
+        title="Dimension"
+        className="my-6"
+        proof={
+          <>
+            <p>Suppose <Math>{`\\{\\mathbf{v}_1, \\ldots, \\mathbf{v}_m\\}`}</Math> and <Math>{`\\{\\mathbf{w}_1, \\ldots, \\mathbf{w}_n\\}`}</Math> are both bases for <Math>V</Math>.</p>
+            <p className="mt-2">Since the <Math>{`\\mathbf{v}`}</Math>'s span <Math>V</Math>, we can write each <Math>{`\\mathbf{w}_j`}</Math> as a combination. Since the <Math>{`\\mathbf{w}`}</Math>'s are independent and written in terms of <Math>m</Math> vectors, we must have <Math>n \leq m</Math>.</p>
+            <p className="mt-2">By the same argument with roles reversed: since the <Math>{`\\mathbf{w}`}</Math>'s span <Math>V</Math> and the <Math>{`\\mathbf{v}`}</Math>'s are independent, we have <Math>m \leq n</Math>.</p>
+            <p className="mt-2">Together: <Math>m = n</Math>. All bases have the same size.</p>
+          </>
+        }
+      >
         <p>
           All bases for a vector space <Math>V</Math> have the <strong>same number of vectors</strong>.
           This number is the <strong>dimension</strong> of <Math>V</Math>, written <Math>\dim(V)</Math>.
@@ -102,7 +124,17 @@ export default function Section14() {
 
       <h2>Basis for the Column Space</h2>
 
-      <Theorem title="Pivot Columns Are a Basis" className="my-6">
+      <Theorem
+        title="Pivot Columns Are a Basis"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Independence:</strong> The pivot columns of <Math>A</Math> correspond to the pivot columns of <Math>R</Math>. In <Math>R</Math>, these columns contain the identity matrix <Math>I_r</Math> (after extracting pivot rows), so they're independent. Row operations preserve linear relationships, so the pivot columns of <Math>A</Math> are also independent.</p>
+            <p className="mt-2"><strong>Spanning:</strong> Each free column of <Math>R</Math> is a combination of pivot columns (visible directly from <Math>R</Math>). Since the same relationships hold in <Math>A</Math>, every column of <Math>A</Math> is a combination of pivot columns. Thus the pivot columns span <Math>C(A)</Math>.</p>
+            <p className="mt-2">With <Math>r</Math> pivot columns forming a basis, <Math>{`\\dim C(A) = r`}</Math>.</p>
+          </>
+        }
+      >
         <p>
           The <strong>pivot columns of <Math>A</Math></strong> are a basis for the column space <Math>C(A)</Math>.
         </p>

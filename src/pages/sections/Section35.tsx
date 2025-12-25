@@ -28,7 +28,18 @@ export default function Section35() {
 
       <h2>Arithmetic with Complex Numbers</h2>
 
-      <Theorem title="Complex Arithmetic" className="my-6">
+      <Theorem
+        title="Complex Arithmetic"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Addition:</strong> Combine real and imaginary parts separately: <Math>(a + bi) + (c + di) = (a+c) + (b+d)i</Math>.</p>
+            <p className="mt-2"><strong>Multiplication:</strong> Use distributive law and <Math>i^2 = -1</Math>:</p>
+            <MathBlock>{`(a + bi)(c + di) = ac + adi + bci + bdi^2 = (ac - bd) + (ad + bc)i`}</MathBlock>
+            <p className="mt-2"><strong>Modulus:</strong> <Math>|z|^2 = z \\bar{z} = (a+bi)(a-bi) = a^2 + b^2</Math>, so <Math>|z| = \\sqrt{a^2 + b^2}</Math>.</p>
+          </>
+        }
+      >
         <p>For <Math>z_1 = a + bi</Math> and <Math>z_2 = c + di</Math>:</p>
         <ul className="list-disc list-inside space-y-2">
           <li><strong>Addition:</strong> <Math>z_1 + z_2 = (a+c) + (b+d)i</Math></li>
@@ -59,7 +70,19 @@ export default function Section35() {
         </p>
       </Definition>
 
-      <Theorem title="Euler's Formula" className="my-6">
+      <Theorem
+        title="Euler's Formula"
+        className="my-6"
+        proof={
+          <>
+            <p>Using Taylor series expansions:</p>
+            <MathBlock>{`e^{i\\theta} = 1 + i\\theta + \\frac{(i\\theta)^2}{2!} + \\frac{(i\\theta)^3}{3!} + \\frac{(i\\theta)^4}{4!} + \\cdots`}</MathBlock>
+            <p className="mt-2">Since <Math>i^2 = -1</Math>, <Math>i^3 = -i</Math>, <Math>i^4 = 1</Math>, etc.:</p>
+            <MathBlock>{`= 1 - \\frac{\\theta^2}{2!} + \\frac{\\theta^4}{4!} - \\cdots + i\\left(\\theta - \\frac{\\theta^3}{3!} + \\frac{\\theta^5}{5!} - \\cdots\\right)`}</MathBlock>
+            <p className="mt-2">The real part is the Taylor series for <Math>\\cos\\theta</Math>, and the imaginary part is the series for <Math>\\sin\\theta</Math>.</p>
+          </>
+        }
+      >
         <MathBlock>
           {`e^{i\\theta} = \\cos\\theta + i\\sin\\theta`}
         </MathBlock>
@@ -103,7 +126,20 @@ export default function Section35() {
 
       <h2>Complex Eigenvalues</h2>
 
-      <Theorem title="Eigenvalues of Real Matrices" className="my-6">
+      <Theorem
+        title="Eigenvalues of Real Matrices"
+        className="my-6"
+        proof={
+          <>
+            <p>Suppose <Math>A</Math> is real and <Math>{`A\\mathbf{x} = \\lambda\\mathbf{x}`}</Math> where <Math>{`\\lambda`}</Math> and <Math>{`\\mathbf{x}`}</Math> may be complex.</p>
+            <p className="mt-2">Take the complex conjugate of both sides:</p>
+            <MathBlock>{`\\overline{A\\mathbf{x}} = \\overline{\\lambda\\mathbf{x}}`}</MathBlock>
+            <p className="mt-2">Since <Math>A</Math> is real, <Math>{`\\bar{A} = A`}</Math>. Also, <Math>{`\\overline{A\\mathbf{x}} = A\\bar{\\mathbf{x}}`}</Math> and <Math>{`\\overline{\\lambda\\mathbf{x}} = \\bar{\\lambda}\\bar{\\mathbf{x}}`}</Math>:</p>
+            <MathBlock>{`A\\bar{\\mathbf{x}} = \\bar{\\lambda}\\bar{\\mathbf{x}}`}</MathBlock>
+            <p className="mt-2">This shows <Math>{`\\bar{\\lambda}`}</Math> is an eigenvalue with eigenvector <Math>{`\\bar{\\mathbf{x}}`}</Math>.</p>
+          </>
+        }
+      >
         <p>
           For a real matrix <Math>A</Math>, complex eigenvalues come in conjugate pairs:
         </p>

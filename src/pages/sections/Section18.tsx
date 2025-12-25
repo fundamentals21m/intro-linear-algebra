@@ -66,7 +66,19 @@ C + D(2) &= 0
 
       <h2>Why Does This Work?</h2>
 
-      <Theorem title="Minimizing the Error" className="my-6">
+      <Theorem
+        title="Minimizing the Error"
+        className="my-6"
+        proof={
+          <>
+            <p>Write <Math>{`\\mathbf{b} = \\mathbf{p} + \\mathbf{e}`}</Math> where <Math>{`\\mathbf{p}`}</Math> is in <Math>C(A)</Math> and <Math>{`\\mathbf{e}`}</Math> is perpendicular to <Math>C(A)</Math>.</p>
+            <p className="mt-2">For any <Math>{`\\mathbf{x}`}</Math>, we have <Math>{`A\\mathbf{x} \\in C(A)`}</Math>. The squared error is:</p>
+            <MathBlock>{`\\|A\\mathbf{x} - \\mathbf{b}\\|^2 = \\|A\\mathbf{x} - \\mathbf{p} - \\mathbf{e}\\|^2 = \\|A\\mathbf{x} - \\mathbf{p}\\|^2 + \\|\\mathbf{e}\\|^2`}</MathBlock>
+            <p>The cross term vanishes because <Math>{`(A\\mathbf{x} - \\mathbf{p})`}</Math> is in <Math>C(A)</Math> and <Math>{`\\mathbf{e}`}</Math> is perpendicular to <Math>C(A)</Math>.</p>
+            <p className="mt-2">Since <Math>{`\\|\\mathbf{e}\\|^2`}</Math> is fixed, the minimum occurs when <Math>{`A\\mathbf{x} = \\mathbf{p}`}</Math>. At this point, <Math>{`A\\mathbf{x} - \\mathbf{b} = -\\mathbf{e}`}</Math> is perpendicular to <Math>C(A)</Math>.</p>
+          </>
+        }
+      >
         <p>
           The error <Math>{`E = \\|A\\mathbf{x} - \\mathbf{b}\\|^2`}</Math> is minimized when
           <Math>{`A\\mathbf{x} - \\mathbf{b}`}</Math> is perpendicular to the column space of <Math>A</Math>.
@@ -96,7 +108,20 @@ C + D(2) &= 0
 
       <h2>When Is <Math>A^TA</Math> Invertible?</h2>
 
-      <Theorem title="Invertibility of A^T A" className="my-6">
+      <Theorem
+        title="Invertibility of A^T A"
+        className="my-6"
+        proof={
+          <>
+            <p>We show <Math>A^TA</Math> is invertible by proving its nullspace is trivial.</p>
+            <p className="mt-2">Suppose <Math>{`A^TA\\mathbf{x} = \\mathbf{0}`}</Math>. Multiply both sides by <Math>{`\\mathbf{x}^T`}</Math>:</p>
+            <MathBlock>{`\\mathbf{x}^TA^TA\\mathbf{x} = 0 \\quad \\Rightarrow \\quad (A\\mathbf{x})^T(A\\mathbf{x}) = 0 \\quad \\Rightarrow \\quad \\|A\\mathbf{x}\\|^2 = 0`}</MathBlock>
+            <p>So <Math>{`A\\mathbf{x} = \\mathbf{0}`}</Math>. If <Math>A</Math> has independent columns, then <Math>{`\\mathbf{x} = \\mathbf{0}`}</Math>.</p>
+            <p className="mt-2">Therefore <Math>{`N(A^TA) = \\{\\mathbf{0}\\}`}</Math>, so <Math>A^TA</Math> is invertible.</p>
+            <p className="mt-2">Note: This also shows <Math>N(A^TA) = N(A)</Math> for any matrix <Math>A</Math>.</p>
+          </>
+        }
+      >
         <p>
           <Math>A^TA</Math> is invertible when <Math>A</Math> has <strong>independent columns</strong>.
         </p>

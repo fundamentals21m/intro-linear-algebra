@@ -13,7 +13,21 @@ export default function Section07() {
 
       <h2>The Laws of Matrix Multiplication</h2>
 
-      <Theorem title="Rules for Matrix Operations" className="my-6">
+      <Theorem
+        title="Rules for Matrix Operations"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Associativity:</strong> We verify entry-by-entry. The <Math>(i,j)</Math> entry of <Math>(AB)C</Math> is:</p>
+            <MathBlock>{`\\sum_k (AB)_{ik} c_{kj} = \\sum_k \\left(\\sum_l a_{il}b_{lk}\\right) c_{kj} = \\sum_l \\sum_k a_{il}b_{lk}c_{kj}`}</MathBlock>
+            <p>The <Math>(i,j)</Math> entry of <Math>A(BC)</Math> is:</p>
+            <MathBlock>{`\\sum_l a_{il}(BC)_{lj} = \\sum_l a_{il}\\left(\\sum_k b_{lk}c_{kj}\\right) = \\sum_l \\sum_k a_{il}b_{lk}c_{kj}`}</MathBlock>
+            <p>These are equal, so <Math>(AB)C = A(BC)</Math>.</p>
+            <p className="mt-2"><strong>Distributivity:</strong> <Math>{`(A(B+C))_{ij} = \\sum_k a_{ik}(b_{kj}+c_{kj}) = \\sum_k a_{ik}b_{kj} + \\sum_k a_{ik}c_{kj} = (AB)_{ij} + (AC)_{ij}`}</Math></p>
+            <p className="mt-2"><strong>Non-commutativity:</strong> Counterexample shown below proves <Math>AB \neq BA</Math> in general.</p>
+          </>
+        }
+      >
         <p>For matrices of compatible sizes:</p>
         <ul className="list-disc list-inside mt-2 space-y-2">
           <li><strong>Associative:</strong> <Math>A(BC) = (AB)C</Math></li>

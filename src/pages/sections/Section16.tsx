@@ -42,7 +42,18 @@ export default function Section16() {
 
       <h2>The Fundamental Theorem</h2>
 
-      <Theorem title="Orthogonality of the Four Subspaces" className="my-6">
+      <Theorem
+        title="Orthogonality of the Four Subspaces"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Row space ⟂ Nullspace:</strong> Let <Math>{`\\mathbf{x} \\in N(A)`}</Math>, so <Math>{`A\\mathbf{x} = \\mathbf{0}`}</Math>. This means:</p>
+            <MathBlock>{`\\begin{bmatrix} \\text{row}_1 \\\\ \\text{row}_2 \\\\ \\vdots \\end{bmatrix} \\mathbf{x} = \\begin{bmatrix} 0 \\\\ 0 \\\\ \\vdots \\end{bmatrix}`}</MathBlock>
+            <p>Each row is orthogonal to <Math>{`\\mathbf{x}`}</Math>. Since every vector in the row space is a combination of rows, and <Math>{`\\mathbf{x}`}</Math> is orthogonal to each row, <Math>{`\\mathbf{x}`}</Math> is orthogonal to the entire row space.</p>
+            <p className="mt-2"><strong>Column space ⟂ Left nullspace:</strong> Apply the same argument to <Math>A^T</Math>. If <Math>{`A^T\\mathbf{y} = \\mathbf{0}`}</Math>, then <Math>{`\\mathbf{y}`}</Math> is orthogonal to every column of <Math>A</Math>, hence to <Math>C(A)</Math>.</p>
+          </>
+        }
+      >
         <p>For any matrix <Math>A</Math>:</p>
         <ul className="list-disc list-inside mt-2 space-y-2">
           <li>The <strong>row space</strong> <Math>C(A^T)</Math> is orthogonal to the <strong>nullspace</strong> <Math>N(A)</Math></li>
@@ -79,7 +90,17 @@ export default function Section16() {
         </MathBlock>
       </Definition>
 
-      <Theorem title="Dimensions Add Up" className="my-6">
+      <Theorem
+        title="Dimensions Add Up"
+        className="my-6"
+        proof={
+          <>
+            <p>Row space and nullspace are orthogonal in <Math>{`\\mathbf{R}^n`}</Math>. Their dimensions are <Math>r</Math> and <Math>n - r</Math>, which add to <Math>n</Math>.</p>
+            <p className="mt-2">Since they are orthogonal and their dimensions sum to <Math>n</Math>, they are orthogonal complements: every vector in <Math>{`\\mathbf{R}^n`}</Math> can be written uniquely as a sum of a row space vector and a nullspace vector.</p>
+            <p className="mt-2">Similarly, column space (dimension <Math>r</Math>) and left nullspace (dimension <Math>m - r</Math>) are orthogonal complements in <Math>{`\\mathbf{R}^m`}</Math>.</p>
+          </>
+        }
+      >
         <p>
           The orthogonal complement fills the rest of the space:
         </p>

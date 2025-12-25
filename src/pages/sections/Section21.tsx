@@ -58,7 +58,19 @@ export default function Section21() {
 
       <h2>Cofactor Expansion</h2>
 
-      <Theorem title="Cofactor Formula" className="my-6">
+      <Theorem
+        title="Cofactor Formula"
+        className="my-6"
+        proof={
+          <>
+            <p>Use property 3 (linearity in each row). Row <Math>i</Math> can be written as:</p>
+            <MathBlock>{`\\text{row}_i = a_{i1}\\mathbf{e}_1 + a_{i2}\\mathbf{e}_2 + \\cdots + a_{in}\\mathbf{e}_n`}</MathBlock>
+            <p className="mt-2">By linearity: <Math>\det A</Math> = sum of <Math>n</Math> determinants, each with row <Math>i</Math> replaced by <Math>{`a_{ij}\\mathbf{e}_j`}</Math>.</p>
+            <p className="mt-2">The determinant with <Math>{`\\mathbf{e}_j`}</Math> in row <Math>i</Math> equals <Math>{`(-1)^{i+j} \\det M_{ij} = C_{ij}`}</Math> (after moving that 1 to position <Math>(i,j)</Math> via row/column exchanges).</p>
+            <p className="mt-2">Each term contributes <Math>{`a_{ij} C_{ij}`}</Math>, giving the cofactor formula.</p>
+          </>
+        }
+      >
         <p>
           The determinant can be computed by expanding along any row or column:
         </p>

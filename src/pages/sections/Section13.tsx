@@ -13,7 +13,19 @@ export default function Section13() {
 
       <h2>The Structure of Solutions</h2>
 
-      <Theorem title="Complete Solution" className="my-6">
+      <Theorem
+        title="Complete Solution"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Every such vector is a solution:</strong> If <Math>{`A\\mathbf{x}_p = \\mathbf{b}`}</Math> and <Math>{`A\\mathbf{x}_n = \\mathbf{0}`}</Math>, then:</p>
+            <MathBlock>{`A(\\mathbf{x}_p + \\mathbf{x}_n) = A\\mathbf{x}_p + A\\mathbf{x}_n = \\mathbf{b} + \\mathbf{0} = \\mathbf{b}`}</MathBlock>
+            <p className="mt-2"><strong>Every solution has this form:</strong> Suppose <Math>{`A\\mathbf{x} = \\mathbf{b}`}</Math>. Then:</p>
+            <MathBlock>{`A(\\mathbf{x} - \\mathbf{x}_p) = A\\mathbf{x} - A\\mathbf{x}_p = \\mathbf{b} - \\mathbf{b} = \\mathbf{0}`}</MathBlock>
+            <p>So <Math>{`\\mathbf{x} - \\mathbf{x}_p`}</Math> is in the nullspace, meaning <Math>{`\\mathbf{x} = \\mathbf{x}_p + \\mathbf{x}_n`}</Math> for some <Math>{`\\mathbf{x}_n \\in N(A)`}</Math>.</p>
+          </>
+        }
+      >
         <p>
           The complete solution to <Math>{`A\\mathbf{x} = \\mathbf{b}`}</Math> is:
         </p>
@@ -47,7 +59,17 @@ export default function Section13() {
 
       <h2>When Is <Math>{`A\\mathbf{x} = \\mathbf{b}`}</Math> Solvable?</h2>
 
-      <Theorem title="Solvability Conditions" className="my-6">
+      <Theorem
+        title="Solvability Conditions"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Condition 1:</strong> <Math>{`A\\mathbf{x} = \\mathbf{b}`}</Math> means <Math>{`\\mathbf{b}`}</Math> is a linear combination of the columns of <Math>A</Math>. By definition, this is exactly the column space <Math>C(A)</Math>.</p>
+            <p className="mt-2"><strong>Condition 2:</strong> A zero row in <Math>R</Math> means that row was a combination of other rows. When we apply the same operations to <Math>{`[A \\mid \\mathbf{b}]`}</Math>, if <Math>{`\\mathbf{b}`}</Math> is in <Math>C(A)</Math>, the corresponding entry in <Math>{`\\mathbf{d}`}</Math> must be zero.</p>
+            <p className="mt-2">Conversely, a zero row in <Math>R</Math> with nonzero entry in <Math>{`\\mathbf{d}`}</Math> gives an equation <Math>0 = c</Math> where <Math>c \neq 0</Math>, which is impossible. So the system has no solution.</p>
+          </>
+        }
+      >
         <p>
           <Math>{`A\\mathbf{x} = \\mathbf{b}`}</Math> is solvable if and only if:
         </p>
@@ -118,7 +140,18 @@ export default function Section13() {
         </div>
       </div>
 
-      <Theorem title="The Rank and Solutions" className="my-6">
+      <Theorem
+        title="The Rank and Solutions"
+        className="my-6"
+        proof={
+          <>
+            <p><strong><Math>r = n</Math>:</strong> All columns are pivot columns, so there are no free columns and no free variables. The nullspace is just <Math>{`\\{\\mathbf{0}\\}`}</Math>, giving at most one solution.</p>
+            <p className="mt-2"><strong><Math>r = m</Math>:</strong> There are <Math>r = m</Math> pivots, one in each row of <Math>R</Math>. No row is all zeros, so the solvability condition is always satisfied for any <Math>{`\\mathbf{b}`}</Math>.</p>
+            <p className="mt-2"><strong><Math>r &lt; n</Math>:</strong> There are <Math>n - r &gt; 0</Math> free variables. If a particular solution exists, we can add any nullspace vector (a nontrivial subspace) to get infinitely many solutions.</p>
+            <p className="mt-2"><strong><Math>r &lt; m</Math>:</strong> Some rows of <Math>R</Math> are all zeros. For most choices of <Math>{`\\mathbf{b}`}</Math>, the corresponding entries of <Math>{`\\mathbf{d}`}</Math> will be nonzero, making the system unsolvable.</p>
+          </>
+        }
+      >
         <ul className="list-disc list-inside space-y-2">
           <li><Math>r = n</Math> means <strong>no free variables</strong>: at most 1 solution</li>
           <li><Math>r = m</Math> means <strong>every <Math>{`\\mathbf{b}`}</Math> is solvable</strong></li>

@@ -37,7 +37,19 @@ export default function Section48() {
         </p>
       </Definition>
 
-      <Theorem title="Properties of Covariance Matrix" className="my-6">
+      <Theorem
+        title="Properties of Covariance Matrix"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Symmetric:</strong> <Math>{`\\Sigma_{ij} = \\text{Cov}(X_i, X_j) = E[(X_i - \\mu_i)(X_j - \\mu_j)]`}</Math>.</p>
+            <p className="mt-2">Since the product is commutative: <Math>{`\\Sigma_{ij} = \\Sigma_{ji}`}</Math>, so <Math>{`\\Sigma = \\Sigma^T`}</Math>.</p>
+            <p className="mt-2"><strong>Positive semidefinite:</strong> For any vector <Math>{`\\mathbf{a}`}</Math>:</p>
+            <MathBlock>{`\\mathbf{a}^T\\Sigma\\mathbf{a} = \\mathbf{a}^T E[(\\mathbf{X}-\\boldsymbol{\\mu})(\\mathbf{X}-\\boldsymbol{\\mu})^T]\\mathbf{a} = E[\\mathbf{a}^T(\\mathbf{X}-\\boldsymbol{\\mu})(\\mathbf{X}-\\boldsymbol{\\mu})^T\\mathbf{a}]`}</MathBlock>
+            <p className="mt-2">Let <Math>{`Y = \\mathbf{a}^T(\\mathbf{X}-\\boldsymbol{\\mu})`}</Math>. Then <Math>{`\\mathbf{a}^T\\Sigma\\mathbf{a} = E[Y^2] = \\text{Var}(Y) \\geq 0`}</Math>.</p>
+          </>
+        }
+      >
         <p>The covariance matrix <Math>\Sigma</Math> is:</p>
         <ul className="list-disc list-inside space-y-1">
           <li><strong>Symmetric:</strong> <Math>\Sigma = \Sigma^T</Math></li>
@@ -47,7 +59,19 @@ export default function Section48() {
 
       <h2>Linear Transformations of Random Vectors</h2>
 
-      <Theorem title="Transformation of Mean and Covariance" className="my-6">
+      <Theorem
+        title="Transformation of Mean and Covariance"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Mean:</strong> Using linearity of expectation:</p>
+            <MathBlock>{`E[\\mathbf{Y}] = E[A\\mathbf{X} + \\mathbf{b}] = AE[\\mathbf{X}] + \\mathbf{b}`}</MathBlock>
+            <p className="mt-2"><strong>Covariance:</strong> Let <Math>{`\\boldsymbol{\\mu}_Y = E[\\mathbf{Y}]`}</Math>. Then <Math>{`\\mathbf{Y} - \\boldsymbol{\\mu}_Y = A(\\mathbf{X} - \\boldsymbol{\\mu}_X)`}</Math>.</p>
+            <MathBlock>{`\\text{Cov}(\\mathbf{Y}) = E[(\\mathbf{Y} - \\boldsymbol{\\mu}_Y)(\\mathbf{Y} - \\boldsymbol{\\mu}_Y)^T]`}</MathBlock>
+            <MathBlock>{`= E[A(\\mathbf{X} - \\boldsymbol{\\mu}_X)(\\mathbf{X} - \\boldsymbol{\\mu}_X)^T A^T] = A\\Sigma_X A^T`}</MathBlock>
+          </>
+        }
+      >
         <p>If <Math>{`\\mathbf{Y} = A\\mathbf{X} + \\mathbf{b}`}</Math>:</p>
         <MathBlock>
           {`E[\\mathbf{Y}] = AE[\\mathbf{X}] + \\mathbf{b}`}
@@ -83,7 +107,19 @@ export default function Section48() {
         </p>
       </Definition>
 
-      <Theorem title="Geometry of Multivariate Normal" className="my-6">
+      <Theorem
+        title="Geometry of Multivariate Normal"
+        className="my-6"
+        proof={
+          <>
+            <p><strong>Constant density contours:</strong> The density is constant when the exponent <Math>{`(\\mathbf{x}-\\boldsymbol{\\mu})^T\\Sigma^{-1}(\\mathbf{x}-\\boldsymbol{\\mu}) = c^2`}</Math> is constant.</p>
+            <p className="mt-2">This is the equation of an ellipsoid centered at <Math>{`\\boldsymbol{\\mu}`}</Math>.</p>
+            <p className="mt-2"><strong>Principal axes:</strong> Diagonalize <Math>{`\\Sigma = Q\\Lambda Q^T`}</Math>. In transformed coordinates <Math>{`\\mathbf{y} = Q^T(\\mathbf{x} - \\boldsymbol{\\mu})`}</Math>:</p>
+            <MathBlock>{`\\mathbf{y}^T\\Lambda^{-1}\\mathbf{y} = \\sum_i \\frac{y_i^2}{\\lambda_i} = c^2`}</MathBlock>
+            <p className="mt-2">This is an axis-aligned ellipsoid with semi-axes <Math>{`c\\sqrt{\\lambda_i}`}</Math>. The eigenvectors of <Math>{`\\Sigma`}</Math> give the principal directions.</p>
+          </>
+        }
+      >
         <p>
           Contours of constant density are ellipsoids. The eigendecomposition <Math>\Sigma = Q\Lambda Q^T</Math>:
         </p>
